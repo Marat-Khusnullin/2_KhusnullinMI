@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout>
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.mvvmhomework.User"/>
+        <variable
+            name="viewModel"
+            type="com.example.mvvmhomework.InfoViewModel"/>
+
+
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mvvmhomework.InfoActivity">
+
+    <EditText
+        android:text="@={viewModel.name}"
+        android:textSize="20sp"
+        android:id="@+id/name"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_above="@+id/changeButton"
+        android:layout_toLeftOf="@+id/changeButton"
+        android:layout_toStartOf="@+id/changeButton"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp" />
+
+    <EditText
+        android:text="@={viewModel.surname}"
+        android:textSize="20sp"
+        android:id="@+id/surname"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/email"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
+
+    <EditText
+
+        android:text="@={viewModel.email}"
+        android:textSize="20sp"
+        android:id="@+id/email"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/changeButton"
+        android:layout_alignLeft="@+id/surname"
+        android:layout_alignStart="@+id/surname"
+        android:layout_marginTop="42dp" />
+
+    <Button
+        android:id="@+id/changeButton"
+        android:text="Изменить"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="@{(v)->viewModel.click()}"
+        />
+
+
+
+</RelativeLayout>
+
+
+</layout>

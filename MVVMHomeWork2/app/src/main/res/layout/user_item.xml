@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+   <data>
+      <variable
+          name="mainViewModel"
+          type="com.example.mvvmhomework.MainViewModel"/>
+
+      <variable
+          name="user"
+          type="com.example.mvvmhomework.User"/>
+
+
+   </data>
+<LinearLayout
+
+    android:id="@+id/userItem"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginTop="20dp"
+    >
+   <TextView
+       android:text="@{user.name}"
+       android:textSize="40dp"
+       android:id="@+id/user"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+
+   <View
+       android:background="@color/colorPrimaryDark"
+       android:layout_width="match_parent"
+       android:layout_height="1dp" />
+
+</LinearLayout>
+
+</layout>
