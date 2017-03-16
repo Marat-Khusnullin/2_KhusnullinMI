@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.serviceapp.InfoActivity">
+
+
+    <TextView
+        android:text="NAME:"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_marginBottom="13dp" />
+
+    <TextView
+        android:text="SURNAME:"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/surname"
+        android:layout_alignLeft="@+id/surname"
+        android:layout_alignStart="@+id/surname"
+        android:layout_marginBottom="17dp" />
+
+    <TextView
+        android:text="EMAIL:"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/surname"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_marginTop="23dp" />
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/name"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="61dp"
+
+        android:layout_above="@+id/surname"
+        android:layout_alignLeft="@+id/surname"
+        android:layout_alignStart="@+id/surname" />
+
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/surname"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/email"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/surname"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>
