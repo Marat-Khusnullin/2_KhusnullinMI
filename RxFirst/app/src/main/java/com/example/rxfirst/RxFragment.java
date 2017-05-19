@@ -57,7 +57,6 @@ public class RxFragment extends Fragment {
 
                     @Override
                     public void onNext(Joke joke) {
-                        System.out.println("OK");
                         mTaskListener.onTaskFinish(joke.getValue().getJoke());
                     }
                 });
