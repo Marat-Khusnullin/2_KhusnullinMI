@@ -1,5 +1,7 @@
 package com.example.rhymebyrhyme.model;
 
+import java.util.List;
+
 /**
  * Created by Amir on 08.07.2017.
  */
@@ -11,20 +13,20 @@ public class User {
     private byte year;
     private String link;
     private String description;
-    private int poemCount;
+    private List<Poem> poems;
     private int rating;
 
     public User() {
     }
 
-    public User(String name, String surname, String email, byte year, String link, String description, int poemCount, int rating) {
+    public User(String name, String surname, String email, byte year, String link, String description, List<Poem> poems, int rating) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.year = year;
         this.link = link;
         this.description = description;
-        this.poemCount = poemCount;
+        this.poems = poems;
         this.rating = rating;
     }
 
@@ -76,12 +78,12 @@ public class User {
         this.description = description;
     }
 
-    public int getPoemCount() {
-        return poemCount;
+    public List<Poem> getPoems() {
+        return poems;
     }
 
-    public void setPoemCount(int poemCount) {
-        this.poemCount = poemCount;
+    public void setPoems(List<Poem> poems) {
+        this.poems = poems;
     }
 
     public int getRating() {
