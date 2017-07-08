@@ -7,7 +7,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 /**
@@ -24,8 +23,7 @@ public class Dao {
         mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<User> genericTypeIndicator = new GenericTypeIndicator<User>() {};
-                currentUser = dataSnapshot.getValue(genericTypeIndicator);
+                currentUser = dataSnapshot.getValue(User.class);
             }
 
             @Override
@@ -33,7 +31,14 @@ public class Dao {
 
             }
         });
-        
+
         return currentUser;
+    }
+
+    private void writeUser(String userId, String name, String surname, String email, byte year,
+                           String link, String description, int poemCount, int rating){
+        User newUser = new User(name, surname, email, year, link, description, 0, 0);
+        mRef = FirebaseDatabase.getInstance().getReference();
+        mRef.child("users").child(userId).setValue(newUser);
     }
 }
