@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.rhymebyrhyme.database.Dao;
 import com.example.rhymebyrhyme.model.User;
 
+
 public class MainProfile extends AppCompatActivity {
     TextView name;
     TextView about;
