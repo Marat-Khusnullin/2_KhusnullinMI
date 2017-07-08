@@ -2,6 +2,7 @@ package com.example.rhymebyrhyme;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     EditText login;
     EditText password;
     Context context;
+    SharedPreferences sPref;
+    final static String CURRENT_EMAIL = "current_email";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     // User is signed out
-
                 }
                 // ...
             }
@@ -68,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void signing(String email, String password){
+    public void signing(final String email, String password){
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "УСПЕХ", Toast.LENGTH_SHORT).show();
+                    saveEmail(email);
+                    Intent intent = new Intent(context, MainProfile.class);
+                    startActivity(intent);
+
                 } else {
                     Toast.makeText(MainActivity.this, "ЧЕТ НЕ ОЧ", Toast.LENGTH_SHORT).show();
                 }
@@ -108,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private void saveEmail(String email){
+        sPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString(CURRENT_EMAIL, email);
+        ed.commit();
     }
 
 

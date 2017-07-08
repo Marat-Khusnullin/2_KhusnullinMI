@@ -15,7 +15,7 @@
         android:layout_marginTop="144dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Почта" />
 
     <EditText
         android:id="@+id/passwordReg"
@@ -26,14 +26,28 @@
         android:layout_below="@+id/email"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint="Ваш пароль"
+        />
 
     <Button
         android:id="@+id/registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordReg"
+        android:text="Зарегистрироваться"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:text="Button" />
+        android:layout_marginBottom="54dp" />
+
+    <EditText
+        android:id="@+id/passwordRegAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwordReg"
+        android:layout_alignStart="@+id/passwordReg"
+        android:layout_below="@+id/passwordReg"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Повторите пароль"/>
 </RelativeLayout>

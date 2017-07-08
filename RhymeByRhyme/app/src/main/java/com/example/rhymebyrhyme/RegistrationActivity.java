@@ -1,6 +1,7 @@
 package com.example.rhymebyrhyme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,6 +63,8 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(context, "ХОРОШ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(context, "не оч", Toast.LENGTH_SHORT).show();
                 }

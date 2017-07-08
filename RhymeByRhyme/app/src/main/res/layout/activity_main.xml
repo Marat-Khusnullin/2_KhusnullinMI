@@ -8,18 +8,18 @@
 
 
     <EditText
+        android:hint="Почта"
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="146dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Почта" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/password"
@@ -48,11 +48,11 @@
         android:id="@+id/registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:text="Регистрация"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
         android:layout_below="@+id/sign"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4" />
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password" />
 </RelativeLayout>
