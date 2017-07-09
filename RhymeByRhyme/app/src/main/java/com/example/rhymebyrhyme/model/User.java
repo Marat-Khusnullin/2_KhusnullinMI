@@ -12,7 +12,7 @@ public class User {
     private String name;
     private String surname;
     private String email;
-    private byte year;
+    private int year;
     private String link;
     private String description;
     private int poemCount;
@@ -27,7 +27,7 @@ public class User {
 
 
 
-    public User(String name, String surname, String email, byte year, String link, String description, List<Poem> poems, int rating) {
+    public User(String name, String surname, String email, int year, String link, String description, List<Poem> poems, int rating) {
 
         this.name = name;
         this.surname = surname;
@@ -66,7 +66,7 @@ public class User {
         this.email = email;
     }
 
-    public byte getYear() {
+    public int getYear() {
         return year;
     }
 

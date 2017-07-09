@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-
+                    /*Intent intent = new Intent(context, MainProfile.class);
+                    startActivity(intent);*/
                 } else {
                     // User is signed out
                 }
@@ -76,10 +77,8 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "УСПЕХ", Toast.LENGTH_SHORT).show();
-                    saveEmail(email);
                     Intent intent = new Intent(context, MainProfile.class);
                     startActivity(intent);
-
                 } else {
                     Toast.makeText(MainActivity.this, "ЧЕТ НЕ ОЧ", Toast.LENGTH_SHORT).show();
                 }
@@ -116,12 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void saveEmail(String email){
-        sPref = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(CURRENT_EMAIL, email);
-        ed.commit();
-    }
+
 
 
 }

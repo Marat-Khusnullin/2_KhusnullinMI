@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 public class Dao {
+
+
     private DatabaseReference mRef;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private User currentUser;
@@ -51,7 +53,7 @@ public class Dao {
 
 
 
-    private void writeUser(String userId, String name, String surname, String email, byte year,
+    public void writeUser(String userId, String name, String surname, String email, int year,
                            String link, String description){
         User newUser = new User(name, surname, email, year, link, description, null ,0);
         mRef = FirebaseDatabase.getInstance().getReference();

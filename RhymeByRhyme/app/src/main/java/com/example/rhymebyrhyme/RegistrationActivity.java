@@ -10,19 +10,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rhymebyrhyme.database.Dao;
+import com.example.rhymebyrhyme.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
     EditText email;
     EditText password;
+    EditText passwordAgain;
     Button reg;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     Context context;
+    private DatabaseReference mRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +39,10 @@ public class RegistrationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.passwordReg);
+        passwordAgain = (EditText) findViewById(R.id.passwordRegAgain);
         reg = (Button) findViewById(R.id.registration);
         context = this;
+        mRef = FirebaseDatabase.getInstance().getReference();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -51,7 +62,11 @@ public class RegistrationActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registration(email.getText().toString(), password.getText().toString());
+                if(password.getText().toString().equals(passwordAgain.getText().toString())) {
+                    registration(email.getText().toString(), password.getText().toString());
+                } else {
+                    Toast.makeText(context, "ПАРОЛИ НЕ СОВПАДАЮТ", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -62,11 +77,11 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(context, "ХОРОШ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainActivity.class);
+                    saveUser();
+                    Intent intent = new Intent(context, UserInfoActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(context, "не оч", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"" + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -78,7 +93,6 @@ public class RegistrationActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
@@ -86,4 +100,13 @@ public class RegistrationActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+    private void saveUser() {
+        Dao dao = new Dao();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        dao.writeUser(firebaseUser.getUid(), "", "","", 0 ,"","");
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString());
+
+    }
+
 }
