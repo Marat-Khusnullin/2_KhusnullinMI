@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.rhymebyrhyme.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -234,11 +233,24 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         else if (v.getId() == R.id.userinfo_save_button){
             progressDialog.setMessage("Загрузка...");
             progressDialog.show();
-            User user = new User(name.getText().toString(), surname.getText().toString(), currentUser.getEmail(),
-                    Integer.parseInt(age.getText().toString()), link.getText().toString(), description.getText().toString());
             Map<String, Object> childUpdates = new HashMap<>();
-            childUpdates.put(currentUser.getUid(), user);
-            mRef.child("users").updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
+            childUpdates.put("email", currentUser.getEmail());
+            if (!name.getText().toString().equals("")){
+                childUpdates.put("name", name.getText().toString());
+            }
+            if (!surname.getText().toString().equals("")){
+                childUpdates.put("surname", surname.getText().toString());
+            }
+            if (!age.getText().toString().equals("")){
+                childUpdates.put("age", age.getText().toString());
+            }
+            if (!link.getText().toString().equals("")){
+                childUpdates.put("link", link.getText().toString());
+            }
+            if (!description.getText().toString().equals("")){
+                childUpdates.put("description", description.getText().toString());
+            }
+            mRef.child("users").child(currentUser.getUid()).updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     progressDialog.dismiss();

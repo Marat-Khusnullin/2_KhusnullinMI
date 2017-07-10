@@ -1,5 +1,6 @@
 package com.example.rhymebyrhyme;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     Context context;
     private DatabaseReference mRef;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,8 @@ public class RegistrationActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.setMessage("Загрузка...");
+                progressDialog.show();
                 if(password.getText().toString().equals(passwordAgain.getText().toString())) {
                     registration(email.getText().toString(), password.getText().toString());
                 } else {
@@ -76,6 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     saveUser();
                     Intent intent = new Intent(context, UserInfoActivity.class);
                     intent.putExtra("Reference", mAuth.getCurrentUser().getUid());
+                    progressDialog.dismiss();
                     startActivity(intent);
                 } else {
                     Toast.makeText(context,"" + task.getException(), Toast.LENGTH_SHORT).show();
@@ -101,9 +106,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private void saveUser() {
         Dao dao = new Dao();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        dao.writeUser(firebaseUser.getUid(), "", "","", 0 ,"","");
+        dao.writeUser(firebaseUser.getUid(), "Не указано", "Не указано","Не указано", 0 ,"Не указано","Не указано");
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString());
-
     }
 
 }
