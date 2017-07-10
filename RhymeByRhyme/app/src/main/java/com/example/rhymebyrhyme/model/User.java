@@ -1,6 +1,7 @@
 package com.example.rhymebyrhyme.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,16 +17,23 @@ public class User {
     private String link;
     private String description;
     private int poemCount;
-
     private List<Poem> poems;
-
     private int rating;
 
     public User() {
     }
 
-
-
+    public User(String name, String surname, String email, int year, String link, String description) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.year = year;
+        this.link = link;
+        this.description = description;
+        this.poemCount = 0;
+        this.poems = new ArrayList<>();
+        this.rating = 0;
+    }
 
     public User(String name, String surname, String email, int year, String link, String description, List<Poem> poems, int rating) {
 
