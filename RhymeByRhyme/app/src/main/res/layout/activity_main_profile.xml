@@ -8,20 +8,276 @@
     tools:context="com.example.rhymebyrhyme.MainProfile">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
        <LinearLayout
+           android:id="@+id/mainlayout"
            android:orientation="vertical"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="130dp">
+
+               <ImageView
+                   android:id="@+id/imageView"
+                   android:layout_width="80dp"
+                   android:layout_height="80dp"
+                   android:layout_marginLeft="30dp"
+                   android:layout_marginTop="30dp" />
+
+               <TextView
+                   android:id="@+id/useremail"
+                   android:layout_width="200dp"
+                   android:layout_height="30dp"
+                   android:textSize="20dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentTop="true"
+                   android:layout_marginEnd="32dp"
+                   android:layout_marginRight="25dp"
+                   android:layout_marginTop="16dp"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:id="@+id/poemcount"
+                   android:layout_width="70dp"
+                   android:layout_height="30dp"
+                   android:layout_marginLeft="22dp"
+                   android:layout_marginStart="22dp"
+                   android:textSize="26dp"
+                   android:textStyle="bold"
+                   android:layout_above="@+id/poems"
+                   android:layout_alignLeft="@+id/useremail"
+                   android:layout_alignStart="@+id/useremail" />
+
+               <TextView
+
+                   android:id="@+id/poems"
+                   android:layout_width="80dp"
+                   android:layout_height="30dp"
+                   android:layout_alignEnd="@+id/poemcount"
+                   android:layout_alignParentBottom="true"
+                   android:layout_alignRight="@+id/poemcount"
+                   android:textColor="#B2B2B2"
+                   android:text="СТИХИ"
+                   android:textSize="18dp" />
+
+               <TextView
+                   android:textSize="18dp"
+                   android:text="ЧИТАТЕЛИ"
+                   android:id="@+id/readers"
+                   android:layout_width="100dp"
+                   android:layout_height="30dp"
+                   android:layout_alignParentBottom="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:layout_marginRight="11dp"
+                   android:layout_marginEnd="11dp"
+                   android:textColor="#B2B2B2"
+                   />
+               
+               <TextView
+                   android:id="@+id/readersCount"
+                   android:layout_width="70dp"
+                   android:layout_height="30dp"
+                   android:textSize="26dp"
+                   android:layout_alignTop="@+id/view"
+                   android:layout_alignRight="@+id/useremail"
+                   android:layout_alignEnd="@+id/useremail"
+                   android:textStyle="bold"/>
 
 
+               <View
+                   android:layout_width="1dp"
+                   android:layout_height="50dp"
+                   android:layout_alignBottom="@+id/imageView"
+                   android:layout_alignEnd="@+id/poemcount"
+                   android:layout_alignRight="@+id/poemcount"
+                   android:layout_below="@+id/useremail"
+                   android:layout_toRightOf="@+id/poemcount"
+                   android:layout_marginLeft="15dp"
+                   android:layout_marginTop="25dp"
+                   android:background="#F4F4F4"
+                   android:id="@+id/view">
+               </View>
 
+           </RelativeLayout>
+           
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="150dp">
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4">
+               </View>
+
+               <TextView
+                   android:id="@+id/watchpoems"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:text="Просмотреть произведения"
+                   android:textSize="25dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginLeft="15dp"/>
+
+               <View
+                   android:layout_below="@+id/watchpoems"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4">
+               </View>
+
+               <TextView
+               android:id="@+id/name"
+               android:layout_width="40dp"
+               android:layout_height="30dp"
+               android:text="Имя"
+               android:textSize="20dp"
+               android:layout_marginTop="20dp"
+               android:layout_below="@+id/watchpoems"
+               android:layout_marginLeft="15dp"
+               android:textColor="#B2B2B2"
+                   />
+               <TextView
+                   android:id="@+id/username"
+                   android:layout_width="350dp"
+                   android:layout_height="37dp"
+                   android:textSize="30dp"
+                   android:textColor="#222222"
+                   android:layout_below="@+id/name"
+                   android:layout_alignLeft="@+id/name"
+                   android:layout_alignStart="@+id/name" />
+
+
+               <View
+                   android:layout_below="@+id/username"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4"
+                   android:layout_marginTop="14dp">
+               </View>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100dp">
+
+               <TextView
+                   android:id="@+id/surname"
+                   android:layout_width="88dp"
+                   android:layout_height="30dp"
+                   android:text="Фамилия"
+                   android:textSize="20dp"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginLeft="15dp"
+                   android:textColor="#B2B2B2"
+                   />
+
+               <TextView
+                   android:id="@+id/usersurname"
+                   android:layout_width="350dp"
+                   android:layout_height="37dp"
+                   android:textSize="30dp"
+                   android:textColor="#222222"
+                   android:layout_below="@+id/surname"
+                   android:layout_alignLeft="@+id/surname"
+                   android:layout_alignStart="@+id/surname" />
+
+               <View
+                   android:layout_below="@+id/usersurname"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4"
+                   android:layout_marginTop="14dp">
+               </View>
+
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100dp">
+
+               <TextView
+                   android:id="@+id/link"
+                   android:layout_width="210dp"
+                   android:layout_height="30dp"
+                   android:text="Страница на стихи.ру"
+                   android:textSize="20dp"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginLeft="15dp"
+                   android:textColor="#B2B2B2"
+                   />
+
+               <TextView
+                   android:id="@+id/userlink"
+                   android:layout_width="350dp"
+                   android:layout_height="37dp"
+                   android:textSize="30dp"
+                   android:textColor="#222222"
+                   android:layout_below="@+id/link"
+                   android:layout_alignLeft="@+id/link"
+                   android:layout_alignStart="@+id/link" />
+
+               <View
+                   android:layout_below="@+id/userlink"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4"
+                   android:layout_marginTop="14dp">
+               </View>
+
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:id="@+id/about"
+                   android:layout_width="210dp"
+                   android:layout_height="30dp"
+                   android:text="О себе"
+                   android:textSize="20dp"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginLeft="15dp"
+                   android:textColor="#B2B2B2"
+                   />
+
+               <TextView
+                   android:id="@+id/userabout"
+                   android:layout_width="350dp"
+                   android:layout_height="wrap_content"
+                   android:textSize="30dp"
+                   android:textColor="#222222"
+                   android:layout_below="@+id/about"
+                   android:layout_alignLeft="@+id/about"
+                   android:layout_alignStart="@+id/about" />
+
+               <View
+                   android:layout_below="@+id/userabout"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#F4F4F4"
+                   android:layout_marginTop="14dp">
+               </View>
+
+           </RelativeLayout>
        </LinearLayout>
-
-
-
     </ScrollView>
 
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

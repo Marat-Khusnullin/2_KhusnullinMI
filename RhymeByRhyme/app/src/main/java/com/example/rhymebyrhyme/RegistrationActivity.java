@@ -104,9 +104,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private void saveUser() {
         Dao dao = new Dao();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        dao.writeUser(firebaseUser.getUid(), "", "","", 0 ,"","");
+        dao.writeUser(firebaseUser.getUid(), "Не указано", "Не указано","Не указано", 0 ,"Не указано","Не указано");
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString());
-
     }
 
 }

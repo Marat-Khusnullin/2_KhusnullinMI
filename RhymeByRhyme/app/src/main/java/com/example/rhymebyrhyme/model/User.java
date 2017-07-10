@@ -17,6 +17,10 @@ public class User {
     private String description;
     private int poemCount;
 
+
+
+    private int readersCount;
+
     private List<Poem> poems;
 
     private int rating;
@@ -35,9 +39,8 @@ public class User {
         this.year = year;
         this.link = link;
         this.description = description;
-
-        this.poemCount = poemCount;
-
+        poemCount = 0;
+        readersCount = 0;
         this.poems = poems;
         this.rating = rating;
     }
@@ -110,5 +113,12 @@ public class User {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+    public int getReadersCount() {
+        return readersCount;
+    }
+
+    public void setReadersCount(int readersCount) {
+        this.readersCount = readersCount;
     }
 }
