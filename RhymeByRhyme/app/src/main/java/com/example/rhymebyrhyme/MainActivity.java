@@ -3,6 +3,7 @@ package com.example.rhymebyrhyme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,11 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    Button sign;
-    Button registration;
+    ImageView sign;
+    ImageView registration;
     EditText login;
     EditText password;
     Context context;
+    TextView guest;
     SharedPreferences sPref;
     final static String CURRENT_EMAIL = "current_email";
     @Override
@@ -34,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
         mAuth = FirebaseAuth.getInstance();
-        sign = (Button) findViewById(R.id.sign);
-        registration = (Button) findViewById(R.id.registration);
+        sign = (ImageView) findViewById(R.id.sign);
+        registration = (ImageView) findViewById(R.id.registration);
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
+        guest = (TextView) findViewById(R.id.guest);
+        guest.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -53,13 +61,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        sign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signing(""+login.getText(), ""+password.getText());
+            sign.setOnClickListener(new View.OnClickListener() {
 
-            }
-        });
+                @Override
+                public void onClick(View view) {
+
+                        signing("" + login.getText(), "" + password.getText());
+
+
+                }
+            });
+
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

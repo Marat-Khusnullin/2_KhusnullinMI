@@ -41,7 +41,7 @@
                    android:textColor="#222222"
                    android:layout_width="180dp"
                    android:layout_height="30dp"
-                   android:textSize="20dp"
+                   android:textSize="@dimen/profile_info_size"
                    android:textStyle="bold"
                    android:layout_above="@+id/poemcount"
                    android:layout_alignRight="@+id/readers"
@@ -53,7 +53,7 @@
                    android:textColor="#222222"
                    android:layout_width="70dp"
                    android:layout_height="30dp"
-                   android:textSize="26dp"
+                   android:textSize="@dimen/profile_info_size"
                    android:textStyle="bold"
                    android:layout_above="@+id/poems"
                    android:layout_alignRight="@+id/poems"
@@ -66,7 +66,7 @@
                    android:layout_height="30dp"
                    android:textColor="#B2B2B2"
                    android:text="СТИХИ"
-                   android:textSize="18dp"
+                   android:textSize="@dimen/profile_names_size"
                    android:layout_marginRight="13dp"
                    android:layout_marginEnd="13dp"
                    android:layout_alignParentBottom="true"
@@ -75,7 +75,7 @@
 
                <TextView
                    android:id="@+id/readers"
-                   android:textSize="18dp"
+                   android:textSize="@dimen/profile_names_size"
                    android:text="ЧИТАТЕЛИ"
                    android:layout_width="100dp"
                    android:layout_height="30dp"
@@ -92,7 +92,7 @@
                    android:textColor="#222222"
                    android:layout_width="70dp"
                    android:layout_height="30dp"
-                   android:textSize="26dp"
+                   android:textSize="@dimen/profile_info_size"
                    android:textStyle="bold"
                    android:layout_above="@+id/readers"
                    android:layout_alignLeft="@+id/readers"
@@ -135,7 +135,7 @@
                android:layout_width="40dp"
                android:layout_height="30dp"
                android:text="Имя"
-               android:textSize="20dp"
+               android:textSize="@dimen/profile_names_size"
                android:layout_marginTop="20dp"
                android:layout_below="@+id/watchpoems"
                android:layout_marginLeft="15dp"
@@ -144,21 +144,21 @@
                <TextView
                    android:id="@+id/username"
                    android:layout_width="350dp"
-                   android:layout_height="37dp"
-                   android:textSize="30dp"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/profile_info_size"
                    android:textColor="#222222"
                    android:layout_below="@+id/name"
                    android:layout_alignLeft="@+id/name"
                    android:layout_alignStart="@+id/name" />
 
 
-               <!--<View
+               <View
                    android:layout_below="@+id/username"
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="#F4F4F4"
                    android:layout_marginTop="14dp">
-               </View>-->
+               </View>
            </RelativeLayout>
 
            <RelativeLayout
@@ -170,7 +170,7 @@
                    android:layout_width="88dp"
                    android:layout_height="30dp"
                    android:text="Фамилия"
-                   android:textSize="20dp"
+                   android:textSize="@dimen/profile_names_size"
                    android:layout_marginTop="20dp"
                    android:layout_marginLeft="15dp"
                    android:textColor="#B2B2B2"
@@ -179,20 +179,20 @@
                <TextView
                    android:id="@+id/usersurname"
                    android:layout_width="350dp"
-                   android:layout_height="37dp"
-                   android:textSize="30dp"
+                   android:layout_height="wrap_content"
+                   android:textSize="@dimen/profile_info_size"
                    android:textColor="#222222"
                    android:layout_below="@+id/surname"
                    android:layout_alignLeft="@+id/surname"
                    android:layout_alignStart="@+id/surname" />
 
-               <!--<View
+               <View
                    android:layout_below="@+id/usersurname"
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:background="#F4F4F4"
                    android:layout_marginTop="14dp">
-               </View>-->
+               </View>
 
            </RelativeLayout>
 
@@ -208,24 +208,24 @@
                    android:layout_marginTop="20dp"
                    android:text="Страница на стихи.ру"
                    android:textColor="#B2B2B2"
-                   android:textSize="20dp" />
+                   android:textSize="@dimen/profile_names_size" />
 
                <TextView
                    android:id="@+id/userlink"
                    android:layout_width="350dp"
-                   android:layout_height="37dp"
+                   android:layout_height="wrap_content"
                    android:layout_alignLeft="@+id/link"
                    android:layout_alignStart="@+id/link"
                    android:layout_below="@+id/link"
                    android:textColor="#222222"
-                   android:textSize="30dp" />
+                   android:textSize="@dimen/profile_info_size" />
 
-               <!--<View
+               <View
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
                    android:layout_below="@+id/userlink"
                    android:layout_marginTop="14dp"
-                   android:background="#F4F4F4"></View>-->
+                   android:background="#F4F4F4"></View>
 
            </RelativeLayout>
 
@@ -239,7 +239,7 @@
                    android:layout_width="210dp"
                    android:layout_height="30dp"
                    android:text="О себе"
-                   android:textSize="20dp"
+                   android:textSize="@dimen/profile_names_size"
                    android:layout_marginTop="20dp"
                    android:layout_marginLeft="15dp"
                    android:textColor="#B2B2B2"
@@ -249,7 +249,7 @@
                    android:id="@+id/userabout"
                    android:layout_width="350dp"
                    android:layout_height="wrap_content"
-                   android:textSize="30dp"
+                   android:textSize="@dimen/profile_info_size"
                    android:textColor="#222222"
                    android:layout_below="@+id/about"
                    android:layout_alignLeft="@+id/about"
@@ -279,6 +279,32 @@
                    android:layout_alignParentEnd="true"
                    android:layout_marginRight="13dp"
                    android:layout_marginEnd="13dp" />
+           </RelativeLayout>
+           
+           
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp">
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#222222"
+                   android:layout_marginTop="1dp">
+               </View>
+
+
+               <TextView
+                   android:id="@+id/exit"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_centerHorizontal="true"
+                   android:text="ВЫХОД"
+                   android:textColor="#222222"
+                   android:textSize="@dimen/profile_info_size"
+                   />
+
+
            </RelativeLayout>
        </LinearLayout>
     </ScrollView>

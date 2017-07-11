@@ -51,6 +51,7 @@ public class MainProfile extends AppCompatActivity {
     private TextView userAbout;
     private TextView watchPoems;
     private TextView changeInfo;
+    private TextView exit;
     private CircleImageView imageView;
     private SharedPreferences sPref;
     private FirebaseAuth mAuth;
@@ -84,6 +85,7 @@ public class MainProfile extends AppCompatActivity {
         watchPoems = (TextView) findViewById(R.id.watchpoems);
         imageView = (CircleImageView) findViewById(R.id.imageview);
         changeInfo = (TextView) findViewById(R.id.changeinfo);
+        exit = (TextView) findViewById(R.id.exit);
 
         poems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
@@ -114,6 +116,8 @@ public class MainProfile extends AppCompatActivity {
         watchPoems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Black.ttf"));
         changeInfo.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        exit.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
 
         changeInfo.setOnClickListener(new View.OnClickListener() {
