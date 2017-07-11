@@ -24,9 +24,13 @@
             android:label="Регистрация"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainProfile"
+            android:name=".MainProfile2"
             android:screenOrientation="portrait" />
         <activity android:name=".UserInfoActivity" />
+        <activity
+            android:name=".MainProfile"
+            android:label="@string/title_activity_main_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

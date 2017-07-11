@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_top_items">
+        <item
+            android:id="@+id/nav_poems"
+            android:title="СТИХОТВОРЕНИЯ" />
+        <item
+            android:id="@+id/nav_authors"
+            android:title="АВТОРЫ" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_bottom_items">
+            <item
+                android:id="@+id/nav_profile"
+                android:title="ПРОФИЛЬ" />
+            <item
+                android:id="@+id/nav_settings"
+                android:title="НАСТРОЙКИ" />
+            <item
+                android:id="@+id/nav_about"
+                android:title="О ПРИЛОЖЕНИИ" />
+     </group>
+
+</menu>
