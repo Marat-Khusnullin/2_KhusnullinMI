@@ -4,16 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,6 +63,8 @@ public class MainProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mainLayout =(LinearLayout)this.findViewById(R.id.mainlayout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        this.setTitle("Мой профиль");
 
 
         poems = (TextView) findViewById(R.id.poems);
