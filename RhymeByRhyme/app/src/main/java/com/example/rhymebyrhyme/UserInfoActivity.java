@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -50,6 +51,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     EditText link;
     EditText description;
     Button saveInfo;
+    Button changeImage;
 
     ProgressDialog progressDialog;
 
@@ -73,15 +75,34 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
+        this.setTitle("Информация");
+
         mIVpicture = (CircleImageView) findViewById(R.id.userinfo_iv_picture);
-        mIVpicture.setOnClickListener(this);
         surname = (EditText) findViewById(R.id.userinfo_surname);
         name = (EditText) findViewById(R.id.userinfo_name);
         age = (EditText) findViewById(R.id.userinfo_age);
         link = (EditText) findViewById(R.id.userinfo_link);
         description = (EditText) findViewById(R.id.userinfo_description);
         saveInfo = (Button) findViewById(R.id.userinfo_save_button);
+        changeImage = (Button) findViewById(R.id.userinfo_image_button);
+        changeImage.setOnClickListener(this);
+
         progressDialog = new ProgressDialog(UserInfoActivity.this);
+
+        surname.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        name.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        age.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        link.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        description.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        saveInfo.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        changeImage.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
 
         saveInfo.setOnClickListener(this);
 

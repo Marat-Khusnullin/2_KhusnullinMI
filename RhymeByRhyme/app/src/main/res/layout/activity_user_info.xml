@@ -6,71 +6,111 @@
     android:layout_height="match_parent"
     tools:context="com.example.rhymebyrhyme.UserInfoActivity">
 
-    <ScrollView
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/userinfo_iv_picture"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp"
+        android:layout_below="@+id/userinfo_description"
+        android:layout_alignLeft="@+id/userinfo_description"
+        android:layout_alignStart="@+id/userinfo_description"
+        android:layout_marginTop="24dp" />
+
+    <EditText
+        android:id="@+id/userinfo_surname"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_line"
+        android:hint="  Фамилия"
+        android:maxLength="25"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColorHint="#C0C0C0"
+        android:textSize="22sp"
+        android:layout_marginTop="110dp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/userinfo_iv_picture"
-                android:layout_marginLeft="145dp"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#000000"/>
+    <EditText
+        android:id="@+id/userinfo_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_line"
+        android:hint="  Имя"
+        android:maxLength="25"
+        android:textColorHint="#C0C0C0"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/userinfo_surname"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"/>
 
-            <EditText
-                android:id="@+id/userinfo_surname"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:maxLength="25"
-                android:hint="Фамилия"
-                android:layout_marginLeft="95dp"/>
+    <EditText
+        android:id="@+id/userinfo_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_line"
+        android:hint="  Возраст"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textColorHint="#C0C0C0"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/userinfo_name"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"/>
 
-            <EditText
-                android:id="@+id/userinfo_name"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="95dp"
-                android:maxLength="25"
-                android:hint="Имя"/>
-            <EditText
-                android:id="@+id/userinfo_age"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:layout_marginLeft="95dp"
-                android:maxLength="3"
-                android:hint="Возраст"/>
-            <EditText
-                android:id="@+id/userinfo_link"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:inputType="textUri"
-                android:maxLength="100"
-                android:layout_marginLeft="95dp"
-                android:hint="Ссылка на Стихи Ру"/>
-            <EditText
-                android:id="@+id/userinfo_description"
-                android:inputType="textLongMessage"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:maxLength="500"
-                android:layout_marginLeft="95dp"
-                android:hint="О себе"/>
-            <Button
-                android:id="@+id/userinfo_save_button"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="130dp"
-                android:text="Сохранить"/>
-        </LinearLayout>
-    </ScrollView>
+    <EditText
+        android:id="@+id/userinfo_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_line"
+        android:hint="  Ссылка на Стихи.Ру"
+        android:inputType="textUri"
+        android:maxLength="100"
+        android:textColorHint="#C0C0C0"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/userinfo_age"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/userinfo_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_line"
+        android:hint="  О себе"
+        android:inputType="textLongMessage"
+        android:maxLength="500"
+        android:textColorHint="#C0C0C0"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/userinfo_link"
+        android:textSize="22sp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/userinfo_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать фото"
+        android:textColor="#000000"
+        android:background="@drawable/white_button"
+        android:layout_alignTop="@+id/userinfo_iv_picture"
+        android:layout_toRightOf="@+id/userinfo_iv_picture"
+        android:layout_alignBottom="@+id/userinfo_iv_picture"
+        android:layout_alignRight="@+id/userinfo_description"
+        android:layout_alignEnd="@+id/userinfo_description"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:id="@+id/userinfo_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Сохранить"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/black_button_bottom"/>
 </RelativeLayout>
