@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.rhymebyrhyme.database.Dao;
+import com.example.rhymebyrhyme.model.Poem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class RegistrationActivity extends AppCompatActivity {
     EditText email;
@@ -107,9 +110,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void saveUser() {
         Dao dao = new Dao();
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString());
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         dao.writeUser(firebaseUser.getUid(), "Не указано", "Не указано","Не указано", 0 ,"Не указано","Не указано");
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString());
+        mRef = FirebaseDatabase.getInstance().getReference();
+        mRef.child("poems").child(firebaseUser.getUid()).child("0").setValue(new Poem(0,"","",0,""+ new Date().getDate()));
     }
 
 }

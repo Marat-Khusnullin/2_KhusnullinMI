@@ -65,6 +65,7 @@ public class MainProfile extends AppCompatActivity {
 
         mRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
         mainLayout =(LinearLayout)this.findViewById(R.id.mainlayout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -128,7 +129,14 @@ public class MainProfile extends AppCompatActivity {
             }
         });
 
-
+        watchPoems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MainPoemsListActivity.class);
+                intent.putExtra("id","" +  user.getUid() );
+                startActivity(intent);
+            }
+        });
 
         setUserInformation();
         mainLayout.setVisibility(LinearLayout.GONE);

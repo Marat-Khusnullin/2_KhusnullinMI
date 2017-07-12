@@ -30,6 +30,10 @@
         <activity
             android:name=".UsersListActivity"
             android:label="@string/title_activity_users_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainPoemsListActivity"
+            android:label="@string/title_activity_main_poem"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
