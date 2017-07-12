@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.rhymebyrhyme.database.Dao;
@@ -24,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     EditText passwordAgain;
-    Button reg;
+    ImageView reg;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     Context context;
@@ -38,7 +39,7 @@ public class RegistrationActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.passwordReg);
         passwordAgain = (EditText) findViewById(R.id.passwordRegAgain);
-        reg = (Button) findViewById(R.id.registration);
+        reg = (ImageView) findViewById(R.id.registration);
         context = this;
         mRef = FirebaseDatabase.getInstance().getReference();
         progressDialog = new ProgressDialog(RegistrationActivity.this);
