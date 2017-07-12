@@ -19,7 +19,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_users_list"
+        android:background="#000000"
+        app:itemTextColor="#FFFFFF"
         app:menu="@menu/activity_users_list_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
