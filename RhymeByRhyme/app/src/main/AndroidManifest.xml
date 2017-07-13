@@ -34,6 +34,10 @@
         <activity
             android:name=".MainPoemsListActivity"
             android:label="@string/title_activity_main_poem"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainProfileActivity"
+            android:label="@string/title_activity_main_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

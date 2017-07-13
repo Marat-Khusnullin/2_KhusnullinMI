@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "УСПЕХ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainProfile.class);
+                    Intent intent = new Intent(context, MainProfileActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(MainActivity.this, "ЧЕТ НЕ ОЧ", Toast.LENGTH_SHORT).show();
