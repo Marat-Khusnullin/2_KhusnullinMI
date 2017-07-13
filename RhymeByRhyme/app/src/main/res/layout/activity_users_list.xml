@@ -8,18 +8,25 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <ProgressBar
+        android:id="@+id/users_list_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="#000"/>
+
     <include
         layout="@layout/app_bar_users_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         android:background="#000000"
+        android:fitsSystemWindows="true"
         app:itemTextColor="#FFFFFF"
         app:menu="@menu/activity_users_list_drawer" />
 

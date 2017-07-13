@@ -24,6 +24,29 @@ public class User {
     public User() {
     }
 
+    public User(String name, String surname, String email, int year, String link, String description, int poemCount, int rating) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.year = year;
+        this.link = link;
+        this.description = description;
+        this.poemCount = poemCount;
+        this.rating = rating;
+    }
+
+    public User(String name, String surname, String email, int year, String link, String description, int poemCount, int readersCount, int rating) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.year = year;
+        this.link = link;
+        this.description = description;
+        this.poemCount = poemCount;
+        this.readersCount = readersCount;
+        this.rating = rating;
+    }
+
     public User(String name, String surname, String email, int year, String link, String description) {
         this.name = name;
         this.surname = surname;

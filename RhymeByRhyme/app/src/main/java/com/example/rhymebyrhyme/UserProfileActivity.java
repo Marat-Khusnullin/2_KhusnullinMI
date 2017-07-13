@@ -1,22 +1,16 @@
 package com.example.rhymebyrhyme;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,9 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+public class UserProfileActivity extends AppCompatActivity {
 
-public class MainProfile extends AppCompatActivity {
-    private ScrollView scrollView;
     private Context context;
     private LinearLayout mainLayout;
     private ProgressBar progressBar;
@@ -49,42 +42,35 @@ public class MainProfile extends AppCompatActivity {
     private TextView about;
     private TextView userAbout;
     private TextView watchPoems;
-    private TextView changeInfo;
-    private TextView exit;
     private CircleImageView imageView;
-    private SharedPreferences sPref;
-    private FirebaseAuth mAuth;
     private DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_profile);
+        setContentView(R.layout.activity_user_profile);
         context = this;
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
-        mainLayout = (LinearLayout) this.findViewById(R.id.mainlayout);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mainLayout =(LinearLayout)this.findViewById(R.id.user_profile_main_layout);
+        progressBar = (ProgressBar) findViewById(R.id.user_profile_progressBar);
 
 
-        poems = (TextView) findViewById(R.id.poems);
-        poemsCount = (TextView) findViewById(R.id.poemcount);
-        readers = (TextView) findViewById(R.id.readers);
-        readersCount = (TextView) findViewById(R.id.readersCount);
-        userEmail = (TextView) findViewById(R.id.useremail);
-        name = (TextView) findViewById(R.id.name);
-        userName = (TextView) findViewById(R.id.username);
-        surname = (TextView) findViewById(R.id.surname);
-        userSurname = (TextView) findViewById(R.id.usersurname);
-        link = (TextView) findViewById(R.id.link);
-        userLink = (TextView) findViewById(R.id.userlink);
-        about = (TextView) findViewById(R.id.about);
-        userAbout = (TextView) findViewById(R.id.userabout);
-        watchPoems = (TextView) findViewById(R.id.watchpoems);
-        imageView = (CircleImageView) findViewById(R.id.imageview);
-        changeInfo = (TextView) findViewById(R.id.changeinfo);
-        exit = (TextView) findViewById(R.id.exit);
+        poems = (TextView) findViewById(R.id.user_profile_poems);
+        poemsCount = (TextView) findViewById(R.id.user_profile_poemcount);
+        readers = (TextView) findViewById(R.id.user_profile_readers);
+        readersCount = (TextView) findViewById(R.id.user_profile_readersCount);
+        userEmail = (TextView) findViewById(R.id.user_profile_useremail);
+        name = (TextView) findViewById(R.id.user_profile_name);
+        userName = (TextView) findViewById(R.id.user_profile_username);
+        surname = (TextView) findViewById(R.id.user_profile_surname);
+        userSurname = (TextView) findViewById(R.id.user_profile_usersurname);
+        link = (TextView) findViewById(R.id.user_profile_link);
+        userLink = (TextView) findViewById(R.id.user_profile_userlink);
+        about = (TextView) findViewById(R.id.user_profile_about);
+        userAbout = (TextView) findViewById(R.id.user_profile_userabout);
+        watchPoems = (TextView) findViewById(R.id.user_profile_watchpoems);
+        imageView = (CircleImageView) findViewById(R.id.user_profile_imageview);
 
         poems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
@@ -114,19 +100,6 @@ public class MainProfile extends AppCompatActivity {
                 getAssets(), "fonts/Roboto-Light.ttf"));
         watchPoems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Black.ttf"));
-        changeInfo.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Light.ttf"));
-        exit.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Light.ttf"));
-
-        changeInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UserInfoActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         setUserInformation();
         mainLayout.setVisibility(LinearLayout.GONE);
@@ -134,22 +107,20 @@ public class MainProfile extends AppCompatActivity {
 
     }
 
-    private void setUserInformation() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void setUserInformation(){
+        mRef.child("users").child(getIntent().getStringExtra("userID")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                poemsCount.setText("" + dataSnapshot.child("poemCount").getValue());
-                readersCount.setText("" + dataSnapshot.child("readersCount").getValue());
-                userEmail.setText("" + dataSnapshot.child("email").getValue());
-                userName.setText("" + dataSnapshot.child("name").getValue());
-                userSurname.setText("" + dataSnapshot.child("surname").getValue());
-                userLink.setText("" + dataSnapshot.child("link").getValue());
-                userAbout.setText("" + dataSnapshot.child("description").getValue());
+                poemsCount.setText(""+ dataSnapshot.child("poemCount").getValue());
+                readersCount.setText(""+ dataSnapshot.child("readersCount").getValue());
+                userEmail.setText(""+ dataSnapshot.child("email").getValue());
+                userName.setText(""+ dataSnapshot.child("name").getValue());
+                userSurname.setText(""+ dataSnapshot.child("surname").getValue());
+                userLink.setText(""+ dataSnapshot.child("link").getValue());
+                userAbout.setText(""+ dataSnapshot.child("description").getValue());
                 mainLayout.setVisibility(LinearLayout.VISIBLE);
                 progressBar.setVisibility(ProgressBar.GONE);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -158,16 +129,16 @@ public class MainProfile extends AppCompatActivity {
 
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        mStorageRef.child("images/" + user.getUid()).getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+        mStorageRef.child("images/" + getIntent().getStringExtra("userID")).getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
-                Picasso.with(context).load(path).resize(200, 200).centerCrop().into(imageView);
+                Picasso.with(context).load(path).resize(200,200).centerCrop().into(imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Picasso.with(context).load("https://firebasestorage.googleapis.com/v0/b/rhymebyrhyme.appspot.com/o/24649396.png?alt=media&token=374987c9-3582-4ee7-8861-5962af10cee0").resize(200, 200).centerCrop().into(imageView);
+                Picasso.with(context).load("https://firebasestorage.googleapis.com/v0/b/rhymebyrhyme.appspot.com/o/24649396.png?alt=media&token=374987c9-3582-4ee7-8861-5962af10cee0").resize(200,200).centerCrop().into(imageView);
             }
         });
 

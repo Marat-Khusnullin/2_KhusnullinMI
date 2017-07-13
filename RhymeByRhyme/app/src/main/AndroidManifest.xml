@@ -30,7 +30,8 @@
         <activity
             android:name=".UsersListActivity"
             android:label="@string/title_activity_users_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UserProfileActivity"></activity>
     </application>
 
 </manifest>

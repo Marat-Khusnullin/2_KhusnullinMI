@@ -4,17 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Context context;
     TextView guest;
+    Button testButton;
     SharedPreferences sPref;
     final static String CURRENT_EMAIL = "current_email";
     @Override
@@ -43,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         registration = (ImageView) findViewById(R.id.registration);
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
+        testButton = (Button) findViewById(R.id.test_button);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UsersListActivity.class);
+                startActivity(intent);
+            }
+        });
         guest = (TextView) findViewById(R.id.guest);
         guest.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));

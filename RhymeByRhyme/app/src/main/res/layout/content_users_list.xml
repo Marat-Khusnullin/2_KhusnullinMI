@@ -8,4 +8,9 @@
     tools:context="com.example.rhymebyrhyme.UsersListActivity"
     tools:showIn="@layout/app_bar_users_list">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/users_list_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </android.support.constraint.ConstraintLayout>
