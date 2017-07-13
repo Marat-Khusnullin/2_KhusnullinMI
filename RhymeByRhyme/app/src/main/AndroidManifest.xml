@@ -23,9 +23,6 @@
             android:name=".RegistrationActivity"
             android:label="Регистрация"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainProfile"
-            android:screenOrientation="portrait" />
         <activity android:name=".UserInfoActivity" />
         <activity
             android:name=".UsersListActivity"

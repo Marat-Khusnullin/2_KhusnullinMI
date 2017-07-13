@@ -55,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-                    /*Intent intent = new Intent(context, MainProfile.class);
-                    startActivity(intent);*/
+
                 } else {
                     // User is signed out
                 }
