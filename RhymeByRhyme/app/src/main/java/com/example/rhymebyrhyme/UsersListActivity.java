@@ -3,6 +3,7 @@ package com.example.rhymebyrhyme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -200,6 +201,8 @@ public class UsersListActivity extends AppCompatActivity
                 super(itemView);
                 view = itemView;
                 name = (TextView) itemView.findViewById(R.id.users_list_item_name);
+                name.setTypeface(Typeface.createFromAsset(
+                        getAssets(), "fonts/Roboto-Light.ttf"));
             }
         }
 
@@ -211,6 +214,8 @@ public class UsersListActivity extends AppCompatActivity
                 super(itemView);
                 view = itemView;
                 name = (TextView) itemView.findViewById(R.id.users_list_special_item_letter);
+                name.setTypeface(Typeface.createFromAsset(
+                        getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
             }
         }
     }

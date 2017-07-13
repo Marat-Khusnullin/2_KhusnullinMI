@@ -1,13 +1,16 @@
 package com.example.rhymebyrhyme.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.rhymebyrhyme.PoemProfileActivity;
 import com.example.rhymebyrhyme.R;
 import com.example.rhymebyrhyme.model.Poem;
 
@@ -32,11 +35,19 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
     }
 
     @Override
-    public void onBindViewHolder(PoemsListAdapter.MyListViewHolder holder, int position) {
+    public void onBindViewHolder(PoemsListAdapter.MyListViewHolder holder, final int position) {
         holder.title.setText(poems.get(position).getTitle());
         holder.date.setText(poems.get(position).getDate());
         holder.likes.setText("" + poems.get(position).getLikes());
-        holder.text.setText(poems.get(position).getText());
+        holder.text.setText(Html.fromHtml(poems.get(position).getText()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PoemProfileActivity.class);
+                intent.putExtra("poem", poems.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
 

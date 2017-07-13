@@ -7,6 +7,11 @@
             android:id="@+id/nav_poems"
             android:title="СТИХОТВОРЕНИЯ" />
         <item
+            android:id="@+id/nav_ownpoem"
+            android:title="НАПИСАТЬ СВОЁ"
+            />
+
+        <item
             android:id="@+id/nav_authors"
             android:title="АВТОРЫ" />
     </group>
