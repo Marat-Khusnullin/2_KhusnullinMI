@@ -96,4 +96,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_users_list">Список авторов</string>
+    <string name="title_activity_main_poem">MainPoemActivity</string>
+    <string name="title_activity_main_profile">MainProfileActivity</string>
+    <string name="title_activity_user_profile2">UserProfileActivity2</string>
 </resources>

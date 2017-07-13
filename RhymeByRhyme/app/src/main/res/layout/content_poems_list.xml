@@ -9,7 +9,7 @@
     tools:showIn="@layout/app_bar_poems_list">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/users_list_recycler"
+        android:id="@+id/recycler"
         android:layout_alignParentTop="true"
         android:layout_marginTop="110dp"
         android:layout_width="match_parent"

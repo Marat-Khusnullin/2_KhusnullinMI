@@ -275,7 +275,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onSuccess(Void aVoid) {
                     progressDialog.dismiss();
-                    Intent intent = new Intent(UserInfoActivity.this, MainProfile.class);
+                    Intent intent = new Intent(UserInfoActivity.this, MainProfileActivity.class);
                     startActivity(intent);
                 }
             });

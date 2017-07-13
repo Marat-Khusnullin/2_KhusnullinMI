@@ -3,14 +3,21 @@ package com.example.rhymebyrhyme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,9 +36,9 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+public class MainProfileActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainProfile extends AppCompatActivity {
-    private ScrollView scrollView;
     private Context context;
     private LinearLayout mainLayout;
     private ProgressBar progressBar;
@@ -55,18 +62,22 @@ public class MainProfile extends AppCompatActivity {
     private SharedPreferences sPref;
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_profile);
+        setContentView(R.layout.activity_main_profile2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         context = this;
+        setTitle("Мой профиль");
 
         mRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        mainLayout = (LinearLayout) this.findViewById(R.id.mainlayout);
+        final FirebaseUser user = mAuth.getCurrentUser();
+        mainLayout =(LinearLayout)this.findViewById(R.id.mainlayout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
 
         poems = (TextView) findViewById(R.id.poems);
         poemsCount = (TextView) findViewById(R.id.poemcount);
@@ -127,29 +138,94 @@ public class MainProfile extends AppCompatActivity {
             }
         });
 
+        watchPoems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MainPoemsListActivity.class);
+                intent.putExtra("id","" +  user.getUid() );
+                startActivity(intent);
+            }
+        });
+
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         setUserInformation();
         mainLayout.setVisibility(LinearLayout.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);
-
     }
 
-    private void setUserInformation() {
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_poems) {
+
+        } else if (id == R.id.nav_authors) {
+            Intent intent = new Intent(MainProfileActivity.this, UsersListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_profile) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_settings) {
+
+        } else if (id == R.id.nav_about) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        toggle.onConfigurationChanged(newConfig);
+    }
+
+
+    private void setUserInformation(){
         FirebaseUser user = mAuth.getCurrentUser();
         mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                poemsCount.setText("" + dataSnapshot.child("poemCount").getValue());
-                readersCount.setText("" + dataSnapshot.child("readersCount").getValue());
-                userEmail.setText("" + dataSnapshot.child("email").getValue());
-                userName.setText("" + dataSnapshot.child("name").getValue());
-                userSurname.setText("" + dataSnapshot.child("surname").getValue());
-                userLink.setText("" + dataSnapshot.child("link").getValue());
-                userAbout.setText("" + dataSnapshot.child("description").getValue());
+                poemsCount.setText(""+ dataSnapshot.child("poemCount").getValue());
+                readersCount.setText(""+ dataSnapshot.child("readersCount").getValue());
+                userEmail.setText(""+ dataSnapshot.child("email").getValue());
+                userName.setText(""+ dataSnapshot.child("name").getValue());
+                userSurname.setText(""+ dataSnapshot.child("surname").getValue());
+                userLink.setText(""+ dataSnapshot.child("link").getValue());
+                userAbout.setText(""+ dataSnapshot.child("description").getValue());
                 mainLayout.setVisibility(LinearLayout.VISIBLE);
                 progressBar.setVisibility(ProgressBar.GONE);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -162,7 +238,7 @@ public class MainProfile extends AppCompatActivity {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
-                Picasso.with(context).load(path).resize(200, 200).centerCrop().into(imageView);
+                Picasso.with(context).load(path).resize(200,200).centerCrop().into(imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

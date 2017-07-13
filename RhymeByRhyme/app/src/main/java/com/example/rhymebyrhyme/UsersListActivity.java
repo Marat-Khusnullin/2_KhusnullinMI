@@ -237,7 +237,8 @@ public class UsersListActivity extends AppCompatActivity
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_profile) {
-
+            Intent intent = new Intent(UsersListActivity.this, MainProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_about) {

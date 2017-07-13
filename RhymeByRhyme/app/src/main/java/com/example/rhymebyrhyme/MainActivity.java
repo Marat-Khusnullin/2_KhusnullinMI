@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     Context context;
     TextView guest;
-    Button testButton;
     SharedPreferences sPref;
     final static String CURRENT_EMAIL = "current_email";
     @Override
@@ -37,19 +34,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+
+        setTitle("Вход");
         mAuth = FirebaseAuth.getInstance();
         sign = (ImageView) findViewById(R.id.sign);
         registration = (ImageView) findViewById(R.id.registration);
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
-        testButton = (Button) findViewById(R.id.test_button);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, UsersListActivity.class);
-                startActivity(intent);
-            }
-        });
+
         guest = (TextView) findViewById(R.id.guest);
         guest.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
@@ -99,28 +91,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "УСПЕХ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, MainProfile.class);
+                    Intent intent = new Intent(context, MainProfileActivity.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, "ЧЕТ НЕ ОЧ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    public void registration(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "ХОРОШ", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "не оч", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
 
     @Override
