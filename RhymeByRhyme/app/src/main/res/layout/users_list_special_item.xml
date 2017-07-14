@@ -6,7 +6,7 @@
         android:id="@+id/users_list_special_item_letter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:padding="10dp"
         android:background="#F4F4F4"

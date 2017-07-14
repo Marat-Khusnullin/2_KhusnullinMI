@@ -3,6 +3,7 @@ package com.example.rhymebyrhyme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 
 import com.example.rhymebyrhyme.model.User;
 import com.example.rhymebyrhyme.model.UserWithID;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +47,7 @@ public class UsersListActivity extends AppCompatActivity
     RecyclerView recyclerView;
     ArrayList<UserWithID> userList = new ArrayList<>();
     ProgressBar progressBar;
+    FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class UsersListActivity extends AppCompatActivity
 
         mRef = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         recyclerView = (RecyclerView) findViewById(R.id.users_list_recycler);
 
@@ -175,8 +180,14 @@ public class UsersListActivity extends AppCompatActivity
                 ulHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(UsersListActivity.this, UserProfileActivity.class);
-                        intent.putExtra("userID", user.getFirebaseID());
+                        Intent intent;
+                        if(!user.getFirebaseID().equals(mUser.getUid())) {
+                            intent = new Intent(UsersListActivity.this, UserProfileActivity.class);
+                            intent.putExtra("userID", user.getFirebaseID());
+                        }
+                        else {
+                            intent = new Intent(UsersListActivity.this, MainProfileActivity.class);
+                        }
                         startActivity(intent);
                     }
                 });
@@ -200,6 +211,7 @@ public class UsersListActivity extends AppCompatActivity
                 super(itemView);
                 view = itemView;
                 name = (TextView) itemView.findViewById(R.id.users_list_item_name);
+                name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf"));
             }
         }
 
@@ -211,6 +223,7 @@ public class UsersListActivity extends AppCompatActivity
                 super(itemView);
                 view = itemView;
                 name = (TextView) itemView.findViewById(R.id.users_list_special_item_letter);
+                name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
             }
         }
     }

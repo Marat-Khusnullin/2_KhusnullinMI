@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rhymebyrhyme.R;
@@ -52,6 +53,7 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
         TextView likes;
         TextView text;
         TextView full;
+        ImageView heart;
 
         public MyListViewHolder(View itemView) {
             super(itemView);
@@ -65,6 +67,7 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
             text.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf"));
             full = (TextView) itemView.findViewById(R.id.full);
             full.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf"));
+            heart = (ImageView) itemView.findViewById(R.id.poem_item_heart);
         }
     }
 }
