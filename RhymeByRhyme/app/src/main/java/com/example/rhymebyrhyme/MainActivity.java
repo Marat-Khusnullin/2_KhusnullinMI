@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
 
-        guest = (TextView) findViewById(R.id.guest);
-        guest.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Light.ttf"));
         login.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         password.setTypeface(Typeface.createFromAsset(
