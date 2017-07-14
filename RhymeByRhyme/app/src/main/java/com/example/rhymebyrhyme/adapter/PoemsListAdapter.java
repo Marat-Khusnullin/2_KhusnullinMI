@@ -27,7 +27,7 @@ import java.util.LinkedList;
 
 
 public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyListViewHolder> {
-    LinkedList<Poem> poems = new LinkedList<>();
+    LinkedList<Poem> poems;
     Context context;
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
@@ -54,7 +54,7 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
         holder.likes.setText("" + poems.get(position).getLikes());
         holder.text.setText(Html.fromHtml(poems.get(position).getText()));
         mRef.child("poems").child(""+ poems.get(position).getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -111,4 +111,6 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
             heart = (ImageView) itemView.findViewById(R.id.poem_item_heart);
         }
     }
+
+
 }
