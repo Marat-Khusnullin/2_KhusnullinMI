@@ -14,6 +14,23 @@ public class Poem implements Serializable {
     private String uId;
     private String date;
     private String category;
+    private boolean like;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public boolean isLike() {
+        return like;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
+    }
 
     public Poem(String uId, int id, String title, String text, int likes, String date, String category) {
         this.uId = uId;

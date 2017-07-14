@@ -133,13 +133,20 @@ public class MainPoemsListActivity extends AppCompatActivity
             mRef.child("poems").child(currentId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Poem poem = postSnapshot.getValue(Poem.class);
+                       Poem poem = postSnapshot.getValue(Poem.class);
+                        if(dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue()!=null) {
+                        poem.setLike((boolean) dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue());}
+                        else {
+                            poem.setLike(false);
+                        }
                         poems.add(poem);
                     }
                     PoemsListAdapter adapter = new PoemsListAdapter(poems, context);
                     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
                     rv.setAdapter(adapter);
+
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -148,5 +155,10 @@ public class MainPoemsListActivity extends AppCompatActivity
             });
 
 
+
+
     }
+
+
+
 }
