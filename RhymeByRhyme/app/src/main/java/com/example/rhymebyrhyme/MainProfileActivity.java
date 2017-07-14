@@ -191,6 +191,9 @@ public class MainProfileActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_about) {
 
+        } else if( id == R.id.nav_ownpoem) {
+            Intent intent = new Intent(MainProfileActivity.this, OwnPoemActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

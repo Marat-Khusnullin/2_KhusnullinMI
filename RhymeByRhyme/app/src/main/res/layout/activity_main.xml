@@ -86,35 +86,5 @@
             android:background="@drawable/registrationbutton" />
     </com.balysv.materialripple.MaterialRippleLayout>
 
-    <TextView
-        android:id="@+id/guest"
-        android:textSize="@dimen/profile_names_size"
-        android:textColor="#222222"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="Продолжить как гость >"
-        android:layout_below="@+id/ripple2"
-        android:layout_centerHorizontal="true" />
-
-
-    <!-- <Button
-         android:id="@+id/sign"
-         android:background="@drawable/signbutton"
-         android:layout_width="210dp"
-         android:layout_height="60dp"
-         android:layout_marginTop="21dp"
-         android:layout_below="@+id/password"
-         android:layout_centerHorizontal="true" />-->
-
-    <!--<Button
-        android:id="@+id/registration"
-        android:background="@drawable/registrationbutton"
-        android:layout_width="210dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/ripple"
-        android:layout_centerHorizontal="true" />-->
-
 
 </RelativeLayout>

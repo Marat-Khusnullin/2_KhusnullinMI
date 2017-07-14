@@ -1,15 +1,33 @@
 package com.example.rhymebyrhyme.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Amir on 08.07.2017.
  */
 
-public class Poem {
+public class Poem implements Serializable {
     private String title;
     private String text;
     private int likes;
     private int id;
+    private String uId;
     private String date;
+    private String category;
+
+    public Poem(String uId, int id, String title, String text, int likes, String date, String category) {
+        this.uId = uId;
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.likes = likes;
+        this.date = date;
+        this.category = category;
+
+    }
+
+    public Poem() {
+    }
 
     public int getId() {
         return id;
@@ -17,9 +35,6 @@ public class Poem {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Poem() {
     }
 
     public String getDate() {
@@ -30,13 +45,12 @@ public class Poem {
         this.date = date;
     }
 
-    public Poem(int id, String title, String text, int likes, String date) {
-        this.id = id;
-        this.title = title;
-        this.text = text;
-        this.likes = likes;
-        this.date = date;
+    public String getuId() {
+        return uId;
+    }
 
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
     public String getTitle() {

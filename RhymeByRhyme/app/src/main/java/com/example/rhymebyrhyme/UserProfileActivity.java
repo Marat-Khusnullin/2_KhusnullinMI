@@ -78,6 +78,7 @@ public class UserProfileActivity extends AppCompatActivity
         mRef = FirebaseDatabase.getInstance().getReference();
         mainLayout =(LinearLayout)this.findViewById(R.id.user_profile_main_layout);
         progressBar = (ProgressBar) findViewById(R.id.user_profile_progressBar);
+        context = this;
 
 
         poems = (TextView) findViewById(R.id.user_profile_poems);

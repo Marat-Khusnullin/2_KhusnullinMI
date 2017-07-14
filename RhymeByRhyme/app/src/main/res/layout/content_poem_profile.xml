@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.rhymebyrhyme.PoemProfileActivity"
+    tools:showIn="@layout/app_bar_poem_profile">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:id="@+id/poemProfileTitle"
+                android:textSize="26sp"
+                android:textColor="#222222"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/poemProfileText"
+            android:layout_marginLeft="20dp"
+            android:textColor="#222222"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+        <ImageView
+            android:id="@+id/heartLikes"
+            android:background="@drawable/heart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginBottom="14dp" />
+            
+            <TextView
+                android:id="@+id/poemProfileDate"
+                android:textSize="20sp"
+                android:textColor="#B2B2B2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="67dp"
+                android:layout_marginEnd="67dp"
+                android:layout_above="@+id/heartLikes"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/poemProfileLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textColor="#B2B2B2"
+
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_alignBottom="@+id/heartLikes"
+                android:layout_toRightOf="@+id/heartLikes"
+                android:layout_toEndOf="@+id/heartLikes" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
