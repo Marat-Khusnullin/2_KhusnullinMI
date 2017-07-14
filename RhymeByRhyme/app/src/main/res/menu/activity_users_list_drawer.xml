@@ -3,6 +3,16 @@
 
     <group android:checkableBehavior="single"
         android:id="@+id/nav_top_items">
+
+        <item
+            android:id="@+id/nav_profile"
+            android:title="МОЙ ПРОФИЛЬ" />
+
+
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_middle_items">
         <item
             android:id="@+id/nav_poems"
             android:title="СТИХОТВОРЕНИЯ" />
@@ -11,22 +21,16 @@
             android:title="НАПИСАТЬ СВОЁ"
             />
 
-        <item
-            android:id="@+id/nav_authors"
-            android:title="АВТОРЫ" />
     </group>
 
     <group android:checkableBehavior="single"
         android:id="@+id/nav_bottom_items">
         <item
-            android:id="@+id/nav_profile"
-            android:title="ПРОФИЛЬ" />
+            android:id="@+id/nav_authors"
+            android:title="АВТОРЫ" />
         <item
-            android:id="@+id/nav_settings"
-            android:title="НАСТРОЙКИ" />
-        <item
-            android:id="@+id/nav_about"
-            android:title="О ПРИЛОЖЕНИИ" />
+            android:id="@+id/nav_top_authors"
+            android:title="РЕЙТИНГ АВТОРОВ"/>
     </group>
 
 </menu>

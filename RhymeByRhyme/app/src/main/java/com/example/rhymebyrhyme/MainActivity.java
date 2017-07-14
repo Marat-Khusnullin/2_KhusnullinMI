@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     EditText login;
     EditText password;
     Context context;
-    TextView guest;
     SharedPreferences sPref;
     final static String CURRENT_EMAIL = "current_email";
     @Override
@@ -42,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
 
-        guest = (TextView) findViewById(R.id.guest);
-        guest.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Light.ttf"));
         login.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         password.setTypeface(Typeface.createFromAsset(

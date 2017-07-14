@@ -30,8 +30,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +40,6 @@ public class UsersListActivity extends AppCompatActivity
 
     ActionBarDrawerToggle toggle;
     DatabaseReference mRef;
-    StorageReference mStorage;
 
     RecyclerView recyclerView;
     ArrayList<UserWithID> userList = new ArrayList<>();
@@ -68,7 +65,6 @@ public class UsersListActivity extends AppCompatActivity
         progressBar.setVisibility(View.VISIBLE);
 
         mRef = FirebaseDatabase.getInstance().getReference();
-        mStorage = FirebaseStorage.getInstance().getReference();
         mUser = FirebaseAuth.getInstance().getCurrentUser();
 
         recyclerView = (RecyclerView) findViewById(R.id.users_list_recycler);
@@ -118,8 +114,6 @@ public class UsersListActivity extends AppCompatActivity
                     }
                     i++;
                 }
-                for (UserWithID user: userList)
-                    System.out.println(user.getUser().getName());
                 UsersListAdapter mAdapter = new UsersListAdapter(userList, UsersListActivity.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
                 recyclerView.setAdapter(mAdapter);
@@ -172,7 +166,6 @@ public class UsersListActivity extends AppCompatActivity
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             final UserWithID user = users.get(position);
             mRef = FirebaseDatabase.getInstance().getReference();
-            mStorage = FirebaseStorage.getInstance().getReference();
 
             if (holder instanceof UsersListViewHolder){
                 UsersListViewHolder ulHolder = (UsersListViewHolder) holder;
@@ -252,10 +245,12 @@ public class UsersListActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent(UsersListActivity.this, MainProfileActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_about) {
-
+        } else if (id == R.id.nav_top_authors){
+            Intent intent = new Intent(UsersListActivity.this, TopAuthorsActivity.class);
+            startActivity(intent);
+        } else if( id == R.id.nav_ownpoem) {
+            Intent intent = new Intent(UsersListActivity.this, OwnPoemActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

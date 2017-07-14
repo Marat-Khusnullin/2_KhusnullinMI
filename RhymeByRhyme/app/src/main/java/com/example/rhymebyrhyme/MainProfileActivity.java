@@ -187,12 +187,11 @@ public class MainProfileActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_about) {
-
         } else if( id == R.id.nav_ownpoem) {
             Intent intent = new Intent(MainProfileActivity.this, OwnPoemActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_top_authors){
+            Intent intent = new Intent(MainProfileActivity.this, TopAuthorsActivity.class);
             startActivity(intent);
         }
 

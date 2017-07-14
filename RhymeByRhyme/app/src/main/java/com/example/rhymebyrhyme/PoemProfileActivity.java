@@ -91,10 +91,12 @@ public class PoemProfileActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
           Intent intent = new Intent(PoemProfileActivity.this, MainProfileActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_about) {
-
+        } else if (id == R.id.nav_top_authors){
+            Intent intent = new Intent(PoemProfileActivity.this, TopAuthorsActivity.class);
+            startActivity(intent);
+        } else if( id == R.id.nav_ownpoem) {
+            Intent intent = new Intent(PoemProfileActivity.this, OwnPoemActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

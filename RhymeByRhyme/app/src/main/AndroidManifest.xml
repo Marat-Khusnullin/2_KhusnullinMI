@@ -47,7 +47,11 @@
             android:name=".PoemProfileActivity"
             android:label="@string/title_activity_poem_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OwnPoemActivity"></activity>
+        <activity android:name=".OwnPoemActivity" />
+        <activity
+            android:name=".TopAuthorsActivity"
+            android:label="@string/title_activity_top_authors"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

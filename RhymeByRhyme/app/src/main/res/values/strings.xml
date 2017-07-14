@@ -12,5 +12,6 @@
     <string name="title_activity_main_profile">MainProfileActivity</string>
     <string name="title_activity_user_profile2">UserProfileActivity2</string>
     <string name="title_activity_poem_profile">PoemProfileActivity</string>
+    <string name="title_activity_top_authors">Рейтинг поэтов</string>
 
 </resources>
