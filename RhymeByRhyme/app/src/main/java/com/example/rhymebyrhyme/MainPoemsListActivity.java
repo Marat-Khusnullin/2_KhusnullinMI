@@ -136,11 +136,8 @@ public class MainPoemsListActivity extends AppCompatActivity
 
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                        Poem poem = postSnapshot.getValue(Poem.class);
-                        if(dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue()!=null) {
-                        poem.setLike((boolean) dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue());}
-                        else {
-                            poem.setLike(false);
-                        }
+
+
                         poems.add(poem);
                     }
                     PoemsListAdapter adapter = new PoemsListAdapter(poems, context);

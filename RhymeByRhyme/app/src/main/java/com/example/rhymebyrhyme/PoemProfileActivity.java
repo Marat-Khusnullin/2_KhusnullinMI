@@ -95,8 +95,21 @@ public class PoemProfileActivity extends AppCompatActivity
                             likeImage.setImageResource(R.drawable.blackheart);
                             poem.setLike(true);
                             mRef2 = FirebaseDatabase.getInstance().getReference();
-                            mRef2.child("poems").child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
+                            mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
                                     .setValue("true");
+                            mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    int oldLikes =Integer.parseInt(""+ dataSnapshot.child("likes").getValue());
+                                    FirebaseDatabase.getInstance().getReference().child("poems").child(""+ poem.getuId()).child(""+ poem.getId())
+                                    .child("likes").setValue(++oldLikes);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         }
 
                         @Override
@@ -106,7 +119,7 @@ public class PoemProfileActivity extends AppCompatActivity
                     });
                 } else {
                     mRef = FirebaseDatabase.getInstance().getReference();
-                    mRef.child("poems").child("" + poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
+                    mRef.child("poems").child(poem.getuId()).child("" + poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
                             .child("like").setValue("false");
                     mRef = FirebaseDatabase.getInstance().getReference();
                     mRef2 = FirebaseDatabase.getInstance().getReference();
@@ -122,9 +135,24 @@ public class PoemProfileActivity extends AppCompatActivity
 
                         }
                     });
+                    mRef2 = FirebaseDatabase.getInstance().getReference();
+                    mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            int oldLikes =Integer.parseInt(""+ dataSnapshot.child("likes").getValue());
+                            FirebaseDatabase.getInstance().getReference().child("poems").child(""+ poem.getuId()).child(""+ poem.getId())
+                                    .child("likes").setValue(--oldLikes);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                     mRef = FirebaseDatabase.getInstance().getReference();
-                    mRef.child("poems").child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
+                    mRef.child("poems").child(poem.getuId()).child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
                             .setValue("false");
+
                     likeImage.setImageResource(R.drawable.heart);
                     poem.setLike(false);
 

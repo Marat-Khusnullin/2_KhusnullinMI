@@ -53,7 +53,7 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
         holder.date.setText(poems.get(position).getDate());
         holder.likes.setText("" + poems.get(position).getLikes());
         holder.text.setText(Html.fromHtml(poems.get(position).getText()));
-        mRef.child("poems").child(""+ poems.get(position).getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
+        mRef.child("poems").child(poems.get(position).getuId()).child(""+ poems.get(position).getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
 
                     @Override
@@ -62,6 +62,9 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
                         if(dataSnapshot.child("like").getValue()!=null && dataSnapshot.child("like").getValue().equals("true")) {
                             holder.heart.setImageResource(R.drawable.blackheart);
                             poems.get(position).setLike(true);
+                        } else {
+                            holder.heart.setImageResource(R.drawable.heart);
+                            poems.get(position).setLike(false);
                         }
                     }
                     @Override
