@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.rhymebyrhyme.model.User;
@@ -51,6 +52,7 @@ public class TopAuthorsActivity extends AppCompatActivity
     ArrayList<UserWithID> userList = new ArrayList<>();
     RecyclerView recyclerView;
     FirebaseUser mUser;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,9 @@ public class TopAuthorsActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        progressBar = (ProgressBar) findViewById(R.id.top_authors_progress);
+        progressBar.setVisibility(View.VISIBLE);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -95,6 +100,7 @@ public class TopAuthorsActivity extends AppCompatActivity
                 TopAuthorsListAdapter mAdapter = new TopAuthorsListAdapter(userList, TopAuthorsActivity.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
                 recyclerView.setAdapter(mAdapter);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

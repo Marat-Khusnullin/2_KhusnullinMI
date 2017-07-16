@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.rhymebyrhyme.UsersListActivity"
-    tools:showIn="@layout/app_bar_users_list">
-
+    tools:context="com.example.rhymebyrhyme.SubscribersActivity"
+    tools:showIn="@layout/app_bar_subscribers">
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,7 +22,7 @@
 
         <ProgressBar
             android:theme="@style/CircularProgress"
-            android:id="@+id/users_list_progress"
+            android:id="@+id/subscribers_list_progress"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_centerVertical="true" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/users_list_recycler"
+            android:id="@+id/subscribers_list_recycler"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

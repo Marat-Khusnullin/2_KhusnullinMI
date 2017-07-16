@@ -36,6 +36,8 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.example.rhymebyrhyme.R.id.readersCount;
+
 public class MainProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,8 +46,12 @@ public class MainProfileActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private TextView poems;
     private TextView poemsCount;
-    private TextView readers;
-    private TextView readersCount;
+    private TextView rating;
+    private TextView ratingNumber;
+    private TextView subscriptions;
+    private TextView subscriptionsNumber;
+    private TextView subscribers;
+    private TextView subscribersNumber;
     private TextView userEmail;
     private TextView name;
     private TextView userName;
@@ -81,8 +87,8 @@ public class MainProfileActivity extends AppCompatActivity
 
         poems = (TextView) findViewById(R.id.poems);
         poemsCount = (TextView) findViewById(R.id.poemcount);
-        readers = (TextView) findViewById(R.id.readers);
-        readersCount = (TextView) findViewById(R.id.readersCount);
+        rating = (TextView) findViewById(R.id.profile_rating);
+        ratingNumber = (TextView) findViewById(readersCount);
         userEmail = (TextView) findViewById(R.id.useremail);
         name = (TextView) findViewById(R.id.name);
         userName = (TextView) findViewById(R.id.username);
@@ -95,15 +101,19 @@ public class MainProfileActivity extends AppCompatActivity
         watchPoems = (TextView) findViewById(R.id.watchpoems);
         imageView = (CircleImageView) findViewById(R.id.imageview);
         changeInfo = (TextView) findViewById(R.id.changeinfo);
+        subscribers = (TextView) findViewById(R.id.profile_subscribers);
+        subscribersNumber = (TextView) findViewById(R.id.profile_subscribers_number);
+        subscriptions = (TextView) findViewById(R.id.profile_subscriptions);
+        subscriptionsNumber = (TextView) findViewById(R.id.profile_subscriptions_number);
         exit = (TextView) findViewById(R.id.exit);
 
         poems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         poemsCount.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
-        readers.setTypeface(Typeface.createFromAsset(
+        rating.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
-        readersCount.setTypeface(Typeface.createFromAsset(
+        ratingNumber.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
         userEmail.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
@@ -127,6 +137,14 @@ public class MainProfileActivity extends AppCompatActivity
                 getAssets(), "fonts/Roboto-Black.ttf"));
         changeInfo.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
+        subscribers.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscribersNumber.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscriptions.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscriptionsNumber.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
         exit.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
 
@@ -143,6 +161,26 @@ public class MainProfileActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(context, MainPoemsListActivity.class);
                 intent.putExtra("id","" +  user.getUid() );
+                startActivity(intent);
+            }
+        });
+
+        subscribersNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainProfileActivity.this, SubscribersActivity.class);
+                intent.putExtra("Activity_Key", "subscribers");
+                intent.putExtra("userID", user.getUid());
+                startActivity(intent);
+            }
+        });
+
+        subscriptionsNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainProfileActivity.this, SubscribersActivity.class);
+                intent.putExtra("Activity_Key", "subscriptions");
+                intent.putExtra("userID", user.getUid());
                 startActivity(intent);
             }
         });
@@ -214,12 +252,43 @@ public class MainProfileActivity extends AppCompatActivity
 
 
     private void setUserInformation(){
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
+
+        mRef.child("subs").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                subscribersNumber.setText(String.valueOf(dataSnapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mRef.child("subs").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int subs = 0;
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    if (data.hasChild(user.getUid())){
+                        subs++;
+                    }
+                }
+                subscriptionsNumber.setText(String.valueOf(subs));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 poemsCount.setText(""+ dataSnapshot.child("poemCount").getValue());
-                readersCount.setText(""+ dataSnapshot.child("readersCount").getValue());
+                ratingNumber.setText(""+ dataSnapshot.child("rating").getValue());
                 userEmail.setText(""+ dataSnapshot.child("email").getValue());
                 userName.setText(""+ dataSnapshot.child("name").getValue());
                 userSurname.setText(""+ dataSnapshot.child("surname").getValue());

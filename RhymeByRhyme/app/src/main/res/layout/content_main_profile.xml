@@ -11,10 +11,19 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#FFFFFF"
-        tools:context="com.example.rhymebyrhyme.MainProfile">
+        tools:context="com.example.rhymebyrhyme.MainProfile"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
@@ -53,8 +62,8 @@
                         android:textSize="@dimen/profile_info_size"
                         android:textStyle="bold"
                         android:layout_above="@+id/poemcount"
-                        android:layout_alignRight="@+id/readers"
-                        android:layout_alignEnd="@+id/readers"
+                        android:layout_alignRight="@+id/profile_rating"
+                        android:layout_alignEnd="@+id/profile_rating"
                         android:layout_marginBottom="11dp" />
 
                     <TextView
@@ -79,13 +88,13 @@
                         android:layout_marginRight="13dp"
                         android:layout_marginEnd="13dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_toLeftOf="@+id/readers"
-                        android:layout_toStartOf="@+id/readers" />
+                        android:layout_toLeftOf="@+id/profile_rating"
+                        android:layout_toStartOf="@+id/profile_rating" />
 
                     <TextView
-                        android:id="@+id/readers"
+                        android:id="@+id/profile_rating"
                         android:textSize="@dimen/profile_names_size"
-                        android:text="ЧИТАТЕЛИ"
+                        android:text="РЕЙТИНГ"
                         android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
@@ -103,9 +112,9 @@
                         android:layout_height="30dp"
                         android:textSize="@dimen/profile_info_size"
                         android:textStyle="bold"
-                        android:layout_above="@+id/readers"
-                        android:layout_alignLeft="@+id/readers"
-                        android:layout_alignStart="@+id/readers"
+                        android:layout_above="@+id/profile_rating"
+                        android:layout_alignLeft="@+id/profile_rating"
+                        android:layout_alignStart="@+id/profile_rating"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp" />
 
@@ -114,26 +123,60 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#F4F4F4">
-                    </View>
+                    android:layout_height="70dp"
+                    android:background="#F4F4F4">
 
                     <TextView
-                        android:id="@+id/watchpoems"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="Просмотреть произведения"
-                        android:textSize="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="15dp"/>
+                        android:id="@+id/profile_subscribers"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginStart="11dp"
+                        android:textColor="#B2B2B2"
+                        android:text="Подписчики"
+                        android:layout_alignBaseline="@+id/profile_subscriptions"
+                        android:layout_alignBottom="@+id/profile_subscriptions"
+                        android:layout_toRightOf="@+id/profile_subscriptions"
+                        android:layout_toEndOf="@+id/profile_subscriptions" />
+
+                    <TextView
+                        android:id="@+id/profile_subscribers_number"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="#B2B2B2"
+                        android:text=""
+                        android:layout_above="@+id/profile_subscribers"
+                        android:layout_alignLeft="@+id/profile_subscribers"
+                        android:layout_alignStart="@+id/profile_subscribers" />
+
+                    <TextView
+                        android:id="@+id/profile_subscriptions_number"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#B2B2B2"
+                        android:gravity="center_horizontal"
+                        android:layout_above="@+id/profile_subscriptions"
+                        android:layout_alignLeft="@+id/profile_subscriptions"
+                        android:layout_alignStart="@+id/profile_subscriptions" />
+
+                    <TextView
+                        android:id="@+id/profile_subscriptions"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#B2B2B2"
+                        android:text="Подписки"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="13dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
 
                     <View
-                        android:layout_below="@+id/watchpoems"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#F4F4F4">
@@ -146,7 +189,6 @@
                         android:text="Имя"
                         android:textSize="@dimen/profile_names_size"
                         android:layout_marginTop="20dp"
-                        android:layout_below="@+id/watchpoems"
                         android:layout_marginLeft="15dp"
                         android:textColor="#B2B2B2"
                         />
@@ -290,6 +332,23 @@
                         android:layout_marginEnd="13dp" />
                 </RelativeLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F4F4F4">
+                </View>
+
+                <TextView
+                    android:id="@+id/watchpoems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="ПОСМОТРЕТЬ СТИХИ"
+                    android:textSize="18sp"
+                    android:textColor="#F4F4F4"
+                    android:background="@drawable/roundedbutton"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -327,9 +386,4 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
     </RelativeLayout>
-
-
-
-
-
 </android.support.constraint.ConstraintLayout>

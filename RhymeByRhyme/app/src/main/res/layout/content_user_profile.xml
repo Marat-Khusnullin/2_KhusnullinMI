@@ -61,8 +61,8 @@
                         android:textSize="@dimen/profile_info_size"
                         android:textStyle="bold"
                         android:layout_above="@+id/user_profile_poemcount"
-                        android:layout_alignRight="@+id/user_profile_readers"
-                        android:layout_alignEnd="@+id/user_profile_readers"
+                        android:layout_alignRight="@+id/user_profile_rating"
+                        android:layout_alignEnd="@+id/user_profile_rating"
                         android:layout_marginBottom="11dp" />
 
                     <TextView
@@ -87,13 +87,13 @@
                         android:layout_marginRight="13dp"
                         android:layout_marginEnd="13dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_toLeftOf="@+id/user_profile_readers"
-                        android:layout_toStartOf="@+id/user_profile_readers" />
+                        android:layout_toLeftOf="@+id/user_profile_rating"
+                        android:layout_toStartOf="@+id/user_profile_rating" />
 
                     <TextView
-                        android:id="@+id/user_profile_readers"
+                        android:id="@+id/user_profile_rating"
                         android:textSize="@dimen/profile_names_size"
-                        android:text="ЧИТАТЕЛИ"
+                        android:text="РЕЙТИНГ"
                         android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
@@ -105,15 +105,15 @@
                         />
 
                     <TextView
-                        android:id="@+id/user_profile_readersCount"
+                        android:id="@+id/user_profile_ratingNumber"
                         android:textColor="#222222"
                         android:layout_width="70dp"
                         android:layout_height="30dp"
                         android:textSize="@dimen/profile_info_size"
                         android:textStyle="bold"
-                        android:layout_above="@+id/user_profile_readers"
-                        android:layout_alignLeft="@+id/user_profile_readers"
-                        android:layout_alignStart="@+id/user_profile_readers"
+                        android:layout_above="@+id/user_profile_rating"
+                        android:layout_alignLeft="@+id/user_profile_rating"
+                        android:layout_alignStart="@+id/user_profile_rating"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp" />
 
@@ -122,60 +122,106 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#F4F4F4">
-                    </View>
+                    android:layout_height="70dp"
+                    android:background="#F4F4F4">
 
                     <TextView
-                        android:id="@+id/user_profile_watchpoems"
-                        android:layout_width="match_parent"
+                        android:id="@+id/user_profile_subscribers"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginStart="11dp"
+                        android:textColor="#B2B2B2"
+                        android:text="Подписчики"
+                        android:layout_alignBaseline="@+id/user_profile_subscriptions"
+                        android:layout_alignBottom="@+id/user_profile_subscriptions"
+                        android:layout_toRightOf="@+id/user_profile_subscriptions"
+                        android:layout_toEndOf="@+id/user_profile_subscriptions" />
+
+                    <TextView
+                        android:id="@+id/user_profile_subscribers_number"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="#B2B2B2"
+                        android:text=""
+                        android:layout_above="@+id/user_profile_subscribers"
+                        android:layout_alignLeft="@+id/user_profile_subscribers"
+                        android:layout_alignStart="@+id/user_profile_subscribers" />
+
+                    <Button
+                        android:id="@+id/user_profile_subscribe"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
-                        android:text="Просмотреть произведения"
-                        android:textSize="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="15dp"/>
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginStart="22dp"
+                        android:textColor="#F4F4F4"
+                        android:background="@drawable/roundedbutton"
+                        android:text="ПОДПИСАТЬСЯ"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/user_profile_subscriptions_number"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#B2B2B2"
+                        android:gravity="center_horizontal"
+                        android:layout_above="@+id/user_profile_subscriptions"
+                        android:layout_alignLeft="@+id/user_profile_subscriptions"
+                        android:layout_alignStart="@+id/user_profile_subscriptions" />
+
+                    <TextView
+                        android:id="@+id/user_profile_subscriptions"
+                        android:layout_width="75dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginStart="13dp"
+                        android:textColor="#B2B2B2"
+                        android:text="Подписки"
+                        android:layout_alignBottom="@+id/user_profile_subscribe"
+                        android:layout_toRightOf="@+id/user_profile_subscribe"
+                        android:layout_toEndOf="@+id/user_profile_subscribe" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
 
                     <View
-                        android:layout_below="@+id/user_profile_watchpoems"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#F4F4F4">
-                    </View>
+                        android:background="#F4F4F4"></View>
 
                     <TextView
                         android:id="@+id/user_profile_name"
                         android:layout_width="40dp"
                         android:layout_height="30dp"
-                        android:text="Имя"
-                        android:textSize="@dimen/profile_names_size"
-                        android:layout_marginTop="20dp"
-                        android:layout_below="@+id/user_profile_watchpoems"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Имя"
                         android:textColor="#B2B2B2"
-                        />
+                        android:textSize="@dimen/profile_names_size" />
+
                     <TextView
                         android:id="@+id/user_profile_username"
                         android:layout_width="350dp"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/profile_info_size"
-                        android:textColor="#222222"
-                        android:layout_below="@+id/user_profile_name"
                         android:layout_alignLeft="@+id/user_profile_name"
-                        android:layout_alignStart="@+id/user_profile_name" />
+                        android:layout_alignStart="@+id/user_profile_name"
+                        android:layout_below="@+id/user_profile_name"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/profile_info_size" />
 
 
                     <View
-                        android:layout_below="@+id/user_profile_username"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#F4F4F4"
-                        android:layout_marginTop="14dp">
-                    </View>
+                        android:layout_below="@+id/user_profile_username"
+                        android:layout_marginTop="14dp"
+                        android:background="#F4F4F4"></View>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -273,6 +319,23 @@
                         android:layout_alignStart="@+id/user_profile_about" />
 
                 </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F4F4F4">
+                </View>
+
+                <TextView
+                    android:id="@+id/user_profile_watchpoems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="ПОСМОТРЕТЬ СТИХИ"
+                    android:textSize="18sp"
+                    android:textColor="#F4F4F4"
+                    android:background="@drawable/roundedbutton"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"/>
             </LinearLayout>
         </ScrollView>
 

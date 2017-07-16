@@ -2,8 +2,8 @@ package com.example.rhymebyrhyme;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class OwnPoemActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -63,7 +62,6 @@ public class OwnPoemActivity extends AppCompatActivity {
                 mAuth = FirebaseAuth.getInstance();
                 mRef = FirebaseDatabase.getInstance().getReference();
                 final FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                mRef = FirebaseDatabase.getInstance().getReference();
 
                 DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference();
                 mRef2.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {

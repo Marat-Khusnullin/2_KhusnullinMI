@@ -3,11 +3,13 @@ package com.example.rhymebyrhyme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,12 +17,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,8 +46,12 @@ public class UserProfileActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private TextView poems;
     private TextView poemsCount;
-    private TextView readers;
-    private TextView readersCount;
+    private TextView rating;
+    private TextView ratingNumber;
+    private TextView subscriptions;
+    private TextView subscriptionsNumber;
+    private TextView subscribers;
+    private TextView subscribersNumber;
     private TextView userEmail;
     private TextView name;
     private TextView userName;
@@ -53,9 +62,11 @@ public class UserProfileActivity extends AppCompatActivity
     private TextView about;
     private TextView userAbout;
     private TextView watchPoems;
+    private Button subscribeButton;
     private CircleImageView imageView;
     private DatabaseReference mRef;
     ActionBarDrawerToggle toggle;
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +87,7 @@ public class UserProfileActivity extends AppCompatActivity
         setTitle("Профиль");
 
         mRef = FirebaseDatabase.getInstance().getReference();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         mainLayout =(LinearLayout)this.findViewById(R.id.user_profile_main_layout);
         progressBar = (ProgressBar) findViewById(R.id.user_profile_progressBar);
         context = this;
@@ -83,8 +95,8 @@ public class UserProfileActivity extends AppCompatActivity
 
         poems = (TextView) findViewById(R.id.user_profile_poems);
         poemsCount = (TextView) findViewById(R.id.user_profile_poemcount);
-        readers = (TextView) findViewById(R.id.user_profile_readers);
-        readersCount = (TextView) findViewById(R.id.user_profile_readersCount);
+        rating = (TextView) findViewById(R.id.user_profile_rating);
+        ratingNumber = (TextView) findViewById(R.id.user_profile_ratingNumber);
         userEmail = (TextView) findViewById(R.id.user_profile_useremail);
         name = (TextView) findViewById(R.id.user_profile_name);
         userName = (TextView) findViewById(R.id.user_profile_username);
@@ -96,14 +108,19 @@ public class UserProfileActivity extends AppCompatActivity
         userAbout = (TextView) findViewById(R.id.user_profile_userabout);
         watchPoems = (TextView) findViewById(R.id.user_profile_watchpoems);
         imageView = (CircleImageView) findViewById(R.id.user_profile_imageview);
+        subscribers = (TextView) findViewById(R.id.user_profile_subscribers);
+        subscribersNumber = (TextView) findViewById(R.id.user_profile_subscribers_number);
+        subscriptions = (TextView) findViewById(R.id.user_profile_subscriptions);
+        subscriptionsNumber = (TextView) findViewById(R.id.user_profile_subscriptions_number);
+        subscribeButton = (Button) findViewById(R.id.user_profile_subscribe);
 
         poems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         poemsCount.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
-        readers.setTypeface(Typeface.createFromAsset(
+        rating.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
-        readersCount.setTypeface(Typeface.createFromAsset(
+        ratingNumber.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
         userEmail.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
@@ -125,6 +142,50 @@ public class UserProfileActivity extends AppCompatActivity
                 getAssets(), "fonts/Roboto-Light.ttf"));
         watchPoems.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Black.ttf"));
+        subscribers.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscribersNumber.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscriptions.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscriptionsNumber.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+        subscribeButton.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Black.ttf"));
+
+        setCorrectSubscribeButton(subscribeButton, getIntent().getStringExtra("userID"), currentUser.getUid());
+
+        subscribeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (subscribeButton.getText().equals("ПОДПИСАТЬСЯ")){
+                    subscribeToUser(getIntent().getStringExtra("userID"), currentUser.getUid());
+                }
+                else {
+                    unsubscribeFrom(getIntent().getStringExtra("userID"), currentUser.getUid());
+                }
+            }
+        });
+
+        subscribersNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileActivity.this, SubscribersActivity.class);
+                intent.putExtra("Activity_Key", "subscribers");
+                intent.putExtra("userID", getIntent().getStringExtra("userID"));
+                startActivity(intent);
+            }
+        });
+
+        subscriptionsNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfileActivity.this, SubscribersActivity.class);
+                intent.putExtra("Activity_Key", "subscriptions");
+                intent.putExtra("userID", getIntent().getStringExtra("userID"));
+                startActivity(intent);
+            }
+        });
 
         watchPoems.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,12 +201,63 @@ public class UserProfileActivity extends AppCompatActivity
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
+    private void setCorrectSubscribeButton(final Button button, String userID, final String subscriberID){
+        mRef.child("subs").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.hasChild(subscriberID)){
+                    button.setText("ПОДПИСАТЬСЯ");
+                    button.setTextColor(Color.parseColor("#F4F4F4"));
+                    button.setBackground(ContextCompat.getDrawable(context, R.drawable.roundedbutton));
+                }
+                else {
+                    button.setText("ОТПИСАТЬСЯ");
+                    button.setTextColor(Color.parseColor("#222222"));
+                    button.setBackground(ContextCompat.getDrawable(context, R.drawable.roundedgreybutton));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void setUserInformation(){
+        mRef.child("subs").child(getIntent().getStringExtra("userID")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                subscribersNumber.setText(String.valueOf(dataSnapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mRef.child("subs").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int subs = 0;
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    if (data.hasChild(getIntent().getStringExtra("userID"))){
+                        subs++;
+                    }
+                }
+                subscriptionsNumber.setText(String.valueOf(subs));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mRef.child("users").child(getIntent().getStringExtra("userID")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 poemsCount.setText(""+ dataSnapshot.child("poemCount").getValue());
-                readersCount.setText(""+ dataSnapshot.child("readersCount").getValue());
+                ratingNumber.setText(""+ dataSnapshot.child("rating").getValue());
                 userEmail.setText(""+ dataSnapshot.child("email").getValue());
                 userName.setText(""+ dataSnapshot.child("name").getValue());
                 userSurname.setText(""+ dataSnapshot.child("surname").getValue());
@@ -178,6 +290,48 @@ public class UserProfileActivity extends AppCompatActivity
 
         progressBar.setVisibility(ProgressBar.GONE);
         mainLayout.setVisibility(LinearLayout.VISIBLE);
+    }
+
+    private void subscribeToUser(final String userID, final String subscriberID){
+        mRef = FirebaseDatabase.getInstance().getReference();
+        mRef.child("subs").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.hasChild(subscriberID)){
+                    FirebaseDatabase.getInstance().getReference().child("subs").child(userID).child(subscriberID).setValue(subscriberID);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        subscribeButton.setText("ОТПИСАТЬСЯ");
+        subscribeButton.setTextColor(Color.parseColor("#222222"));
+        subscribeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.roundedgreybutton));
+        subscribersNumber.setText(String.valueOf(Integer.parseInt(subscribersNumber.getText().toString()) + 1));
+    }
+
+    private void unsubscribeFrom(final String userID, final String subscriberID){
+        mRef = FirebaseDatabase.getInstance().getReference();
+        mRef.child("subs").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(subscriberID)){
+                    FirebaseDatabase.getInstance().getReference().child("subs").child(userID).child(subscriberID).removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        subscribeButton.setText("ПОДПИСАТЬСЯ");
+        subscribeButton.setTextColor(Color.parseColor("#F4F4F4"));
+        subscribeButton.setBackground(ContextCompat.getDrawable(context, R.drawable.roundedbutton));
+        subscribersNumber.setText(String.valueOf(Integer.parseInt(subscribersNumber.getText().toString()) - 1));
     }
 
     @Override
