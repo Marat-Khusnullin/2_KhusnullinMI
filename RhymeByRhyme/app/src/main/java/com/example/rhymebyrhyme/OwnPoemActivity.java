@@ -35,7 +35,7 @@ public class OwnPoemActivity extends AppCompatActivity {
     TextView categoryText;
     Button publishing;
     String [] categories = {"Жизнь", "Война", "Любовь", "Религия",
-            "Политика", "Семья", "Дружба", "Мистика", "Хокку", "История", "Проза"};
+            "Политика", "Семья", "Дружба", "Мистика", "История"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

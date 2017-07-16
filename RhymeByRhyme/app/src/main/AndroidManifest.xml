@@ -51,6 +51,14 @@
         <activity
             android:name=".TopAuthorsActivity"
             android:label="@string/title_activity_top_authors"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PoemsCategoriesListActivity"
+            android:label="@string/title_activity_poems_categories_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PoemsByCategoryActivity"
+            android:label="@string/title_activity_poems_by_category"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
