@@ -36,6 +36,7 @@ public class PoemProfileActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
     private DatabaseReference mRef2;
+    private boolean isReady = true;
     Poem poem;
 
     ActionBarDrawerToggle toggle;
@@ -85,24 +86,31 @@ public class PoemProfileActivity extends AppCompatActivity
         likeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!poem.isLike()) {
+                if (!poem.isLike() && isReady) {
+                    isReady = false;
+                    poem.setLike(true);
+                    likeImage.setImageResource(R.drawable.blackheart);
                     mRef.child("users").child(poem.getuId()).child("rating").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             int oldRating = Integer.parseInt("" + dataSnapshot.getValue());
 
                             mRef2.child("users").child(poem.getuId()).child("rating").setValue(++oldRating);
-                            likeImage.setImageResource(R.drawable.blackheart);
-                            poem.setLike(true);
+
+                            //poem.setLike(true);
                             mRef2 = FirebaseDatabase.getInstance().getReference();
-                            mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
+                            mRef2.child("poems").child("" + poem.getuId()).child("" + poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
                                     .setValue("true");
-                            mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            mRef2.child("poems").child("" + poem.getuId()).child("" + poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    int oldLikes =Integer.parseInt(""+ dataSnapshot.child("likes").getValue());
-                                    FirebaseDatabase.getInstance().getReference().child("poems").child(""+ poem.getuId()).child(""+ poem.getId())
-                                    .child("likes").setValue(++oldLikes);
+                                    int oldLikes = Integer.parseInt("" + dataSnapshot.child("likes").getValue());
+                                    FirebaseDatabase.getInstance().getReference().child("poems").child("" + poem.getuId()).child("" + poem.getId())
+                                            .child("likes").setValue(++oldLikes);
+                                    int newLikes = Integer.parseInt("" + likes.getText()) +1;
+                                    likes.setText("" + newLikes);
+                                    isReady = true;
+
                                 }
 
                                 @Override
@@ -117,17 +125,40 @@ public class PoemProfileActivity extends AppCompatActivity
 
                         }
                     });
+
                 } else {
+                    if(isReady) {
+                        isReady = false;
+                    poem.setLike(false);
+                    likeImage.setImageResource(R.drawable.heart);
                     mRef = FirebaseDatabase.getInstance().getReference();
-                    mRef.child("poems").child(poem.getuId()).child("" + poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid())
-                            .child("like").setValue("false");
-                    mRef = FirebaseDatabase.getInstance().getReference();
-                    mRef2 = FirebaseDatabase.getInstance().getReference();
                     mRef.child("users").child(poem.getuId()).child("rating").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             int oldRating = Integer.parseInt("" + dataSnapshot.getValue());
+
                             mRef2.child("users").child(poem.getuId()).child("rating").setValue(--oldRating);
+
+                            //poem.setLike(true);
+                            mRef2 = FirebaseDatabase.getInstance().getReference();
+                            mRef2.child("poems").child("" + poem.getuId()).child("" + poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
+                                    .setValue("false");
+                            mRef2.child("poems").child("" + poem.getuId()).child("" + poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    int oldLikes = Integer.parseInt("" + dataSnapshot.child("likes").getValue());
+                                    FirebaseDatabase.getInstance().getReference().child("poems").child("" + poem.getuId()).child("" + poem.getId())
+                                            .child("likes").setValue(--oldLikes);
+                                    int newLikes = Integer.parseInt("" + likes.getText()) -1;
+                                    likes.setText("" + newLikes);
+                                    isReady = true;
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         }
 
                         @Override
@@ -135,28 +166,14 @@ public class PoemProfileActivity extends AppCompatActivity
 
                         }
                     });
-                    mRef2 = FirebaseDatabase.getInstance().getReference();
-                    mRef2.child("poems").child(""+ poem.getuId()).child(""+ poem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            int oldLikes =Integer.parseInt(""+ dataSnapshot.child("likes").getValue());
-                            FirebaseDatabase.getInstance().getReference().child("poems").child(""+ poem.getuId()).child(""+ poem.getId())
-                                    .child("likes").setValue(--oldLikes);
-                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
-                    mRef = FirebaseDatabase.getInstance().getReference();
-                    mRef.child("poems").child(poem.getuId()).child(""+ poem.getId()).child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like")
-                            .setValue("false");
-
-                    likeImage.setImageResource(R.drawable.heart);
-                    poem.setLike(false);
+                    //poem.setLike(false);
 
                 }
+
+
+            }
 
 
             }
@@ -190,7 +207,8 @@ public class PoemProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_poems) {
-
+            Intent intent = new Intent(PoemProfileActivity.this, PoemsCategoriesListActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_authors) {
             Intent intent = new Intent(PoemProfileActivity.this, UsersListActivity.class);
             startActivity(intent);

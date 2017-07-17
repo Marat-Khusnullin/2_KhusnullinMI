@@ -351,7 +351,8 @@ public class UserProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_poems) {
-
+            Intent intent = new Intent(UserProfileActivity.this, PoemsCategoriesListActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_authors) {
             Intent intent = new Intent(UserProfileActivity.this, UsersListActivity.class);
             startActivity(intent);
