@@ -209,6 +209,9 @@ public class PoemProfileActivity extends AppCompatActivity
         if (id == R.id.nav_poems) {
             Intent intent = new Intent(PoemProfileActivity.this, PoemsCategoriesListActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_feed) {
+            Intent intent = new Intent(PoemProfileActivity.this, FeedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_authors) {
             Intent intent = new Intent(PoemProfileActivity.this, UsersListActivity.class);
             startActivity(intent);

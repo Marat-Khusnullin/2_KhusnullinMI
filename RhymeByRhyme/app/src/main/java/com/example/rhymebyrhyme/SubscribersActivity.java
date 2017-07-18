@@ -269,7 +269,11 @@ public class SubscribersActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_poems) {
-
+            Intent intent = new Intent(SubscribersActivity.this, PoemsCategoriesListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_feed) {
+            Intent intent = new Intent(SubscribersActivity.this, FeedActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_authors) {
             Intent intent = new Intent(SubscribersActivity.this, UsersListActivity.class);
             startActivity(intent);

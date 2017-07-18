@@ -16,5 +16,6 @@
     <string name="title_activity_subscribers">Подписчики</string>
     <string name="title_activity_poems_categories_list">PoemsCategoriesListActivity</string>
     <string name="title_activity_poems_by_category">PoemsByCategoryActivity</string>
+    <string name="title_activity_feed">Лента</string>
 
 </resources>
