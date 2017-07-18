@@ -50,10 +50,11 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".PoemProfileActivity"
-            android:label="@string/title_activity_poem_profile"
+            android:label="Стих"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity android:name=".OwnPoemActivity"
+            android:label="Написать стихотворение"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".TopAuthorsActivity"
@@ -62,12 +63,12 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".PoemsCategoriesListActivity"
-            android:label="@string/title_activity_poems_categories_list"
+            android:label="Категории"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".PoemsByCategoryActivity"
-            android:label="@string/title_activity_poems_by_category"
+            android:label="Стихотворения"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity

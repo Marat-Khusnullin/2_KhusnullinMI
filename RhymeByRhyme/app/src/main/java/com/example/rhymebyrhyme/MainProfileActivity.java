@@ -134,17 +134,17 @@ public class MainProfileActivity extends AppCompatActivity
         userAbout.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         watchPoems.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Black.ttf"));
+                getAssets(), "fonts/Roboto-Light.ttf"));
         changeInfo.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
         subscribers.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Black.ttf"));
+                getAssets(), "fonts/Roboto-Light.ttf"));
         subscribersNumber.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Black.ttf"));
+                getAssets(), "fonts/Roboto-Light.ttf"));
         subscriptions.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Black.ttf"));
+                getAssets(), "fonts/Roboto-Light.ttf"));
         subscriptionsNumber.setTypeface(Typeface.createFromAsset(
-                getAssets(), "fonts/Roboto-Black.ttf"));
+                getAssets(), "fonts/Roboto-Light.ttf"));
         exit.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
 
