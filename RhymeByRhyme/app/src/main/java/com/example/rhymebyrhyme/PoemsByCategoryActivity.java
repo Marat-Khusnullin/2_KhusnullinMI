@@ -134,8 +134,6 @@ public class PoemsByCategoryActivity extends AppCompatActivity
                     userList.add(userWithID);
                 }
                 secondSetter();
-
-
             }
 
             @Override
@@ -147,7 +145,6 @@ public class PoemsByCategoryActivity extends AppCompatActivity
 
 
     public void secondSetter() {
-
         if (count < userList.size()) {
             User user = userList.get(count).getUser();
             mRef = FirebaseDatabase.getInstance().getReference();
