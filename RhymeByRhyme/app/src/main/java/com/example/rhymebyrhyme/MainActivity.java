@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Вход");
         mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()!=null){
+            Intent intent = new Intent(context, MainProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }
         sign = (ImageView) findViewById(R.id.sign);
         registration = (ImageView) findViewById(R.id.registration);
         login = (EditText) findViewById(R.id.login);
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     Intent intent = new Intent(context, MainProfileActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

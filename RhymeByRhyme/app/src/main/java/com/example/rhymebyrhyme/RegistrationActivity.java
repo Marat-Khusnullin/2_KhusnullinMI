@@ -113,7 +113,6 @@ public class RegistrationActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         dao.writeUser(firebaseUser.getUid(), "Не указано", "Не указано","Не указано", 0 ,"Не указано","Не указано");
         mRef = FirebaseDatabase.getInstance().getReference();
-        //mRef.child("poems").child(firebaseUser.getUid()).child("0").setValue(new Poem(0,"","",0,""+ new Date().getDate()));
     }
 
 }
