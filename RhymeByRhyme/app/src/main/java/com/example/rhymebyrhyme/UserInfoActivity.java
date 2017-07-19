@@ -18,7 +18,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -104,12 +103,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 getAssets(), "fonts/Roboto-Light.ttf"));
         changeImage.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Roboto-Light.ttf"));
-        changeImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addPhoto();
-            }
-        });
 
         saveInfo.setOnClickListener(this);
 
@@ -255,7 +248,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.userinfo_iv_picture){
+        if(v.getId() == R.id.userinfo_image_button){
             addPhoto();
         }
         else if (v.getId() == R.id.userinfo_save_button){
